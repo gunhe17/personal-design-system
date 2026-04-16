@@ -33,6 +33,10 @@ migrate_working_dir/
 /build/
 /coverage/
 
+# Vercel build artifacts
+/flutter/
+/.vercel/
+
 # Symbolication related
 app.*.symbols
 

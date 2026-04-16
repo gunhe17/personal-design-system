@@ -1,17 +1,30 @@
-# flutter_design_system
+# Personal Design System
 
-A new Flutter project.
+A minimal Flutter design system showcase, deployed to the web via Vercel.
 
-## Getting Started
+## Live
 
-This project is a starting point for a Flutter application.
+_URL will be available after Vercel deployment._
 
-A few resources to get you started if this is your first Flutter project:
+## Development
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+```bash
+flutter pub get
+flutter run -d chrome
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Build
+
+```bash
+flutter build web --release
+```
+
+Output: `build/web/`
+
+## Structure
+
+- `lib/core/` — design tokens (colors, typography, dimensions)
+- `lib/pages/` — showcase pages
+- `assets/fonts/` — Pretendard (OFL-1.1)
+- `docs/` — design reference (component spec CSV)
+- `vercel.json` — deployment config
