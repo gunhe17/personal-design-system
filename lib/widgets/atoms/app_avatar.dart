@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
-import '../../core/app_dimensions.dart';
+import 'app_badge.dart';
 
 class AppAvatar extends StatelessWidget {
   final String imageUrl;
@@ -31,7 +31,7 @@ class AppAvatar extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             border: Border.all(
-              color: isDark ? Colors.white.withOpacity(0.1) : AppColors.gray200,
+              color: isDark ? Colors.white.withValues(alpha: 0.1) : AppColors.gray200,
               width: 1,
             ),
           ),
@@ -40,17 +40,9 @@ class AppAvatar extends StatelessWidget {
           Positioned(
             right: 0,
             bottom: 0,
-            child: Container(
-              width: size * 0.25,
-              height: size * 0.25,
-              decoration: BoxDecoration(
-                color: const Color(0xFF10B981), // Emerald-500
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: isDark ? AppColors.darkBackground : AppColors.lightSurface,
-                  width: 2,
-                ),
-              ),
+            child: AppBadge(
+              size: size * 0.25 + 4, // 4 for border allowance
+              variant: AppBadgeVariant.online,
             ),
           ),
       ],

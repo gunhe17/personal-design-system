@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
 import '../../core/app_typography.dart';
-import '../../core/app_dimensions.dart';
 import '../atoms/app_description_item.dart';
 import '../atoms/app_file_item.dart';
+import '../atoms/app_surface.dart';
 
 class DiscriptionlistsClone extends StatelessWidget {
   const DiscriptionlistsClone({super.key});
@@ -11,7 +11,7 @@ class DiscriptionlistsClone extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final dividerColor = isDark ? Colors.white.withOpacity(0.05) : AppColors.gray200;
+    final dividerColor = isDark ? Colors.white.withValues(alpha: 0.05) : AppColors.gray200;
 
     return Container(
       padding: const EdgeInsets.all(24),
@@ -81,13 +81,9 @@ class DiscriptionlistsClone extends StatelessWidget {
   }
 
   Widget _buildAttachments(bool isDark) {
-    final borderColor = isDark ? Colors.white.withOpacity(0.1) : AppColors.gray200;
+    final borderColor = isDark ? AppColors.gray800 : AppColors.gray200;
     
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(AppDimensions.radiusMd),
-        border: Border.all(color: borderColor),
-      ),
+    return AppSurface(
       child: Column(
         children: [
           AppFileItem(fileName: 'resume_back_end_developer.pdf', fileSize: '2.4mb', onDownload: () {}),

@@ -3,6 +3,7 @@ import '../../core/app_colors.dart';
 import '../../core/app_dimensions.dart';
 import '../../core/app_typography.dart';
 import '../../core/app_animations.dart';
+import '../atoms/app_surface.dart';
 
 class SelectOption {
   final String id;
@@ -94,7 +95,7 @@ class _SelectmenusCloneState extends State<SelectmenusClone> with SingleTickerPr
           
           // Trigger Button
           Material(
-            color: isDark ? Colors.white.withOpacity(0.05) : Colors.white,
+            color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
             borderRadius: BorderRadius.circular(AppDimensions.radiusMd),
             child: InkWell(
               onTap: _toggle,
@@ -130,7 +131,7 @@ class _SelectmenusCloneState extends State<SelectmenusClone> with SingleTickerPr
                     AnimatedRotation(
                       turns: _isOpen ? 0.5 : 0,
                       duration: AppAnimations.fast,
-                      child: Icon(
+                      child: const Icon(
                         Icons.keyboard_arrow_down,
                         size: 20,
                         color: AppColors.gray400,
@@ -153,16 +154,9 @@ class _SelectmenusCloneState extends State<SelectmenusClone> with SingleTickerPr
               child: ScaleTransition(
                 scale: _scaleAnimation,
                 alignment: Alignment.topCenter,
-                child: Container(
-                  constraints: const BoxConstraints(maxHeight: 240),
-                  decoration: BoxDecoration(
-                    color: isDark ? AppColors.gray900 : Colors.white,
-                    borderRadius: BorderRadius.circular(AppDimensions.radiusMd),
-                    border: Border.all(color: colorScheme.outline),
-                    boxShadow: AppColors.elevation(2, isDark),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(AppDimensions.radiusMd),
+                child: AppSurface(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxHeight: 240),
                     child: ListView.builder(
                       shrinkWrap: true,
                       padding: const EdgeInsets.symmetric(vertical: 4),

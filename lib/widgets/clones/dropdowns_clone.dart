@@ -3,6 +3,7 @@ import '../../core/app_colors.dart';
 import '../../core/app_dimensions.dart';
 import '../../core/app_typography.dart';
 import '../../core/app_animations.dart';
+import '../atoms/app_surface.dart';
 
 enum DropdownAlignment { left, center, right }
 
@@ -111,7 +112,7 @@ class _DropdownsCloneState extends State<DropdownsClone> with SingleTickerProvid
                   AnimatedRotation(
                     turns: _isOpen ? 0.5 : 0,
                     duration: AppAnimations.normal,
-                    child: Icon(
+                    child: const Icon(
                       Icons.keyboard_arrow_down,
                       size: 20,
                       color: AppColors.gray400,
@@ -134,25 +135,21 @@ class _DropdownsCloneState extends State<DropdownsClone> with SingleTickerProvid
             child: ScaleTransition(
               scale: _scaleAnimation,
               alignment: Alignment.topCenter,
-              child: Container(
-                width: 200,
-                decoration: BoxDecoration(
-                  color: isDark ? AppColors.gray900 : Colors.white,
-                  borderRadius: BorderRadius.circular(AppDimensions.radiusMd),
-                  border: Border.all(color: Theme.of(context).colorScheme.outline),
-                  boxShadow: AppColors.elevation(2, isDark),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const SizedBox(height: 4),
-                    _buildMenuItem('Account settings', Icons.person_outline, isDark),
-                    _buildMenuItem('Support', Icons.help_outline, isDark),
-                    _buildMenuItem('License', Icons.description_outlined, isDark),
-                    Divider(color: Theme.of(context).colorScheme.outline, height: 1),
-                    _buildMenuItem('Sign out', Icons.logout, isDark),
-                    const SizedBox(height: 4),
-                  ],
+              child: AppSurface(
+                child: SizedBox(
+                  width: 200,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const SizedBox(height: 4),
+                      _buildMenuItem('Account settings', Icons.person_outline, isDark),
+                      _buildMenuItem('Support', Icons.help_outline, isDark),
+                      _buildMenuItem('License', Icons.description_outlined, isDark),
+                      Divider(color: Theme.of(context).colorScheme.outline, height: 1),
+                      _buildMenuItem('Sign out', Icons.logout, isDark),
+                      const SizedBox(height: 4),
+                    ],
+                  ),
                 ),
               ),
             ),

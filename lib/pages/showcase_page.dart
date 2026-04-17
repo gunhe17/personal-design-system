@@ -8,16 +8,31 @@ import '../widgets/atoms/app_button.dart';
 import '../widgets/atoms/app_text_field.dart';
 import '../widgets/atoms/app_checkbox.dart';
 import '../widgets/atoms/app_avatar.dart';
+import '../widgets/atoms/app_badge.dart';
 import '../widgets/atoms/app_list_item.dart';
 import '../widgets/atoms/app_description_item.dart';
 import '../widgets/atoms/app_file_item.dart';
+import '../widgets/atoms/app_stat_item.dart';
+import '../widgets/atoms/app_pagination_item.dart';
+import '../widgets/atoms/app_logo.dart';
+import '../widgets/atoms/app_section_header.dart';
+import '../widgets/atoms/app_pill.dart';
+import '../widgets/atoms/app_surface.dart';
+import '../widgets/atoms/app_showcase_unit.dart';
 import '../widgets/clones/dropdowns_clone.dart';
 import '../widgets/clones/selectmenus_clone.dart';
 import '../widgets/clones/formlayouts_clone.dart';
 import '../widgets/clones/loginandout_clone.dart';
 import '../widgets/clones/stackedlists_clone.dart';
 import '../widgets/clones/discriptionlists_clone.dart';
-import 'example_profile_page.dart';
+import '../widgets/clones/simplestats_clone.dart';
+import '../widgets/clones/drawers_clone.dart';
+import '../widgets/clones/pagination_clone.dart';
+import '../widgets/clones/headers_clone.dart';
+import '../widgets/clones/hero_clone.dart';
+import '../widgets/clones/features_clone.dart';
+import '../widgets/clones/bento_grid_clone.dart';
+import '../widgets/clones/team_clone.dart';
 
 class ShowcasePage extends StatefulWidget {
   const ShowcasePage({super.key});
@@ -42,38 +57,72 @@ class _ShowcasePageState extends State<ShowcasePage> {
               slivers: [
                 _buildHeroSection(context),
                 
-                _buildCategoryHeader(context, '00. Foundations', '디자인 시스템의 시각적 기초 요소입니다.'),
-                _buildFoundationSection(context, '0.1', 'Theme Colors', '팔레트 및 그라데이션 정의', _buildThemeColorConfig(context)),
-                _buildFoundationSection(context, '0.2', 'Typography Scale', '텍스트 시스템 규격', _buildTypographyScale(context)),
-                _buildFoundationSection(context, '0.3', 'Animation Tokens', '인터랙션 및 전환 효과', _buildAnimationShowcase(context)),
+                // --- 00. FOUNDATIONS ---
+                _buildCategoryHeader(context, '00. Foundations', '디자인 시스템의 시각적 기초 및 전역 변수 설정입니다.'),
+                _buildFoundationSection(context, '0.1', 'Theme Colors', '팔레트 및 포인트 그라데이션 정의', _buildThemeColorConfig(context)),
+                _buildFoundationSection(context, '0.2', 'Typography Scale', '다국어 대응 텍스트 시스템 규격', _buildTypographyScale(context)),
+                _buildFoundationSection(context, '0.3', 'Animation Tokens', '인터랙션 및 전환 효과 표준', _buildAnimationShowcase(context)),
 
-                _buildCategoryHeader(context, '01. Atoms', '시스템을 구성하는 최소 단위의 위젯들입니다.'),
-                _buildFoundationSection(context, '1.1', 'App Button', '시각적 위계에 따른 컬러 이원화', _buildButtonAtoms(context)),
-                _buildFoundationSection(context, '1.2', 'App Text Field', '표준 입력, 접두어, 멀티라인 지원', _buildTextFieldAtoms(context)),
-                _buildFoundationSection(context, '1.3', 'App Checkbox', '상태 전환이 가능한 인터랙티브 원자', _buildCheckboxAtoms(context)),
-                _buildFoundationSection(context, '1.4', 'App Avatar', '프로필 이미지 및 상태 표시 원자', _buildAvatarAtoms(context)),
-                _buildFoundationSection(context, '1.5', 'App List Item', '표준 데이터 행 위젯', _buildListItemAtoms(context)),
-                _buildFoundationSection(context, '1.6', 'App Description Item', '키-값 쌍의 데이터 표시 원자', _buildDescriptionAtoms(context)),
-                _buildFoundationSection(context, '1.7', 'App File Item', '첨부파일 및 다운로드 액션 행 위젯', _buildFileAtoms(context)),
+                // --- 01. BASE ATOMS ---
+                _buildCategoryHeader(context, '01. Base Atoms', '가장 기초적인 독립 인터랙션 부품들입니다.'),
+                _buildFoundationSection(context, '1.1', 'Action Buttons', '아이콘 버튼 및 표준 버튼 변형', _buildButtonAtoms(context)),
+                _buildFoundationSection(context, '1.2', 'Selection Controls', '체크박스 및 상태 전환 원자', _buildCheckboxAtoms(context)),
 
-                _buildCategoryHeader(context, '02. Functional Combinations', '원자 단위 위젯들이 조합된 기능적 레이아웃입니다.'),
-                _buildFoundationSection(context, '2.1', 'Dropdown Menu', '정렬 옵션이 포함된 드롭다운', _buildDropdownShowcase(context)),
-                _buildFoundationSection(context, '2.2', 'Select Menu', '아바타 리스트 선택', const SelectmenusClone()),
-                _buildFoundationSection(context, '2.3', 'Stacked List', '데이터 목록 및 상태 표시 조합', const StackedlistsClone()),
-                _buildFoundationSection(context, '2.4', 'Description List', '상세 정보 리스트 조합', const DiscriptionlistsClone()),
+                // --- 02. DATA ATOMS ---
+                _buildCategoryHeader(context, '02. Data Atoms', '정보를 시각적으로 구체화하는 작은 입자들입니다.'),
+                _buildFoundationSection(context, '2.1', 'Identifiers', '아바타 및 통계 수치 표시 원자', _buildDataAtoms(context)),
+
+                // --- 03. INPUT ATOMS ---
+                _buildCategoryHeader(context, '03. Input Atoms', '정밀 정렬 및 무채색 강조가 적용된 입력 원자입니다.'),
+                _buildFoundationSection(context, '3.1', 'Text Inputs', '표준 입력, 접두어 그룹 및 멀티라인 지원', _buildTextFieldAtoms(context)),
+
+                // --- 04. STRUCTURAL UNITS ---
+                _buildCategoryHeader(context, '04. Structural Units', '조합을 위한 기초 행(Row) 및 구조 단위 위젯입니다.'),
+                _buildFoundationSection(context, '4.1', 'Information Rows', '표준 데이터 행 및 상세 정보 아이템', _buildStructuralAtoms(context)),
+                _buildFoundationSection(context, '4.2', 'Pagination Units', '페이지 전환을 위한 최소 단위', _buildPaginationAtoms(context)),
+
+                // --- 05. FUNCTIONAL COMBINATIONS ---
+                _buildCategoryHeader(context, '05. Functional Combinations', '원자들이 결합되어 특정 기능을 수행하는 분자 단위입니다.'),
+                _buildFoundationSection(context, '5.1', 'Interactive Menus', '정렬 옵션이 포함된 드롭다운 및 선택 메뉴', _buildMenuCombinations(context)),
+                _buildFoundationSection(
+                  context, 
+                  '5.2', 
+                  'Navigational Bars', 
+                  '헤더 및 페이지네이션 바 조립 예시', 
+                  const Column(
+                    children: [
+                      AppFrame(title: 'nav_header', child: HeadersClone()),
+                      SizedBox(height: 32),
+                      AppFrame(title: 'pagination', child: PaginationClone()),
+                    ],
+                  )
+                ),
+
+                // --- 06. SECTION TEMPLATES ---
+                _buildCategoryHeader(context, '06. Section Templates', '원자 부품들이 조립된 기능적 대형 레이아웃입니다.'),
+                _buildFoundationSection(context, '6.1', 'Data Sections', '목록, 통계 그리드, 상세 폼 등 섹션 템플릿', _buildSectionCombinations(context)),
                 
-                _buildCategoryHeader(context, '03. Full Layouts', '원자 부품들이 조립된 완성형 페이지 레이아웃입니다.'),
+                // --- 07. NAVIGATION & OVERLAYS ---
+                _buildCategoryHeader(context, '07. Navigation & Overlays', '화면의 흐름과 공간을 제어하는 고수준 원자입니다.'),
+                _buildFoundationSection(context, '7.1', 'Slide-overs', '사이드 패널 및 드로어 인터랙션', const DrawersClone()),
+
+                // --- 08. FULL LAYOUTS ---
+                _buildCategoryHeader(context, '08. Full Layouts', '모든 원자가 집약된 실제 서비스 화면 예시입니다.'),
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        _buildItemLabel(context, 'Profile Settings', '3.1 Form Layout Clone'),
+                        _buildItemLabel(context, 'Hero Section', '8.1 Marketing Hero Template'),
+                        const SizedBox(height: 24),
+                        const AppFrame(title: 'hero', child: HeroClone()),
+                        const SizedBox(height: 80),
+                        _buildItemLabel(context, 'Profile Settings', '8.2 Settings Page Template'),
                         const SizedBox(height: 24),
                         const AppFrame(title: 'settings', child: FormlayoutsClone()),
                         const SizedBox(height: 80),
-                        _buildItemLabel(context, 'Authentication', '3.2 Login Page Clone'),
+                        _buildItemLabel(context, 'Authentication', '8.3 Sign-in Page Template'),
                         const SizedBox(height: 24),
                         const AppFrame(title: 'auth', child: LoginandoutClone()),
                       ],
@@ -90,26 +139,24 @@ class _ShowcasePageState extends State<ShowcasePage> {
     );
   }
 
+  // --- HERO ---
   Widget _buildHeroSection(BuildContext context) {
     return SliverToBoxAdapter(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(24, 80, 24, 40),
+        padding: const EdgeInsets.fromLTRB(24, 100, 24, 40),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-              decoration: BoxDecoration(
-                color: AppColors.pointOrange.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(AppDimensions.radiusFull),
-              ),
-              child: Text('ATOMIC DESIGN v1.7', style: AppTypography.labelSmall.copyWith(color: AppColors.pointOrange, fontWeight: FontWeight.bold)),
-            ),
-            const SizedBox(height: 20),
-            Text('Achromatic & Point', style: AppTypography.displayLarge),
+            const AppPill(text: 'ATOMIC SYSTEM v1.9'),
+            const SizedBox(height: 24),
+            Text('Achromatic & Point', style: AppTypography.displayLarge.copyWith(height: 1.0)),
             ShaderMask(
-              shaderCallback: (bounds) => const LinearGradient(colors: AppColors.pointGradient).createShader(bounds),
-              child: Text('Modular Showcase', style: AppTypography.displayLarge.copyWith(color: AppColors.lightSurface)),
+              shaderCallback: (bounds) => const LinearGradient(
+                colors: AppColors.pointGradient,
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ).createShader(bounds),
+              child: Text('Logical Hierarchy', style: AppTypography.displayLarge.copyWith(color: AppColors.lightSurface, height: 1.1)),
             ),
           ],
         ),
@@ -117,171 +164,198 @@ class _ShowcasePageState extends State<ShowcasePage> {
     );
   }
 
-  // --- ATOM SHOWCASES ---
-
   Widget _buildButtonAtoms(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildItemLabel(context, 'Point Variant', 'Primary CTA Action'),
-        const SizedBox(height: 20),
-        Wrap(
-          spacing: 12,
-          runSpacing: 12,
-          children: [
-            AppButton(text: 'Primary Button', onPressed: () {}),
-            AppButton(text: 'Action with Icon', icon: Icons.bolt, onPressed: () {}),
-          ],
+        AppShowcaseUnit(
+          label: 'Primary', 
+          child: AppButton(text: 'Primary Action', onPressed: () {}),
         ),
-        const SizedBox(height: 48),
-        _buildItemLabel(context, 'Achromatic Variants', 'Secondary & Support Actions'),
-        const SizedBox(height: 20),
-        Wrap(
-          spacing: 12,
-          runSpacing: 12,
-          children: [
-            AppButton(text: 'Secondary', variant: AppButtonVariant.secondary, onPressed: () {}),
-            AppButton(text: 'Ghost Text', variant: AppButtonVariant.text, onPressed: () {}),
-            AppButton(text: 'Text w/ Icon', variant: AppButtonVariant.text, icon: Icons.arrow_forward, onPressed: () {}),
-            const AppButton(text: 'Disabled', onPressed: null),
-          ],
+        AppShowcaseUnit(
+          label: 'Secondary', 
+          child: AppButton(text: 'Secondary', variant: AppButtonVariant.secondary, onPressed: () {}),
         ),
-      ],
-    );
-  }
-
-  Widget _buildTextFieldAtoms(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildItemLabel(context, 'Text Input Fields', 'Standard & Grouped Types'),
-        const SizedBox(height: 20),
-        const Column(
-          children: [
-            AppTextField(hint: 'Standard Input (Neutral Gray Focus)'),
-            SizedBox(height: 16),
-            AppTextField(prefix: 'workcation.com/', hint: 'janesmith', helperText: 'Username with achromatic baseline sync.'),
-            SizedBox(height: 16),
-            AppTextField(hint: 'TextArea (Unified cursor height)', maxLines: 3),
-          ],
+        AppShowcaseUnit(
+          label: 'Icon', 
+          child: AppButton(text: 'With Icon', icon: Icons.bolt, onPressed: () {}),
+        ),
+        AppShowcaseUnit(
+          label: 'Text Link', 
+          child: AppButton(text: 'Text Link', variant: AppButtonVariant.text, onPressed: () {}),
         ),
       ],
     );
   }
 
   Widget _buildCheckboxAtoms(BuildContext context) {
-    return Column(
+    return AppShowcaseUnit(
+      label: 'Standard', 
+      child: AppCheckbox(initialValue: true, onChanged: (v){}, title: 'Interactive Switch', description: 'Neutral gray toggle state.'),
+    );
+  }
+
+  Widget _buildDataAtoms(BuildContext context) {
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildItemLabel(context, 'Checkbox Atom', 'Interactive Component State'),
-        const SizedBox(height: 20),
-        AppCheckbox(initialValue: true, onChanged: (v){}, title: 'Interactive Checked', description: 'Neutral gray background when active.'),
-        const SizedBox(height: 16),
-        AppCheckbox(initialValue: false, onChanged: (v){}, title: 'Interactive Unchecked', description: 'Clean border-only state.'),
+        AppShowcaseUnit(
+          label: 'Avatar', 
+          child: AppAvatar(imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80', size: 56, isOnline: true),
+        ),
+        AppShowcaseUnit(
+          label: 'Logo with Text', 
+          child: AppLogo(size: 40),
+        ),
+        AppShowcaseUnit(
+          label: 'Logo Only', 
+          child: AppLogo(size: 40, showText: false),
+        ),
+        AppShowcaseUnit(
+          label: 'Notification Badge', 
+          child: AppBadge(variant: AppBadgeVariant.notification, size: 12),
+        ),
+        AppShowcaseUnit(
+          label: 'Dot Badge', 
+          child: AppBadge(variant: AppBadgeVariant.dot, size: 10),
+        ),
+        AppShowcaseUnit(
+          label: 'Pill', 
+          child: AppPill(text: 'NEW'),
+        ),
+        AppShowcaseUnit(
+          label: 'Stat Item', 
+          child: AppStatItem(label: 'Global Transactions', value: '44 Million'),
+        ),
       ],
     );
   }
 
-  Widget _buildAvatarAtoms(BuildContext context) {
+  Widget _buildTextFieldAtoms(BuildContext context) {
+    return const Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        AppShowcaseUnit(
+          label: 'Standard', 
+          child: AppTextField(hint: 'Standard Input Field'),
+        ),
+        AppShowcaseUnit(
+          label: 'With Prefix', 
+          child: AppTextField(prefix: 'workcation.com/', hint: 'janesmith'),
+        ),
+        AppShowcaseUnit(
+          label: 'TextArea', 
+          child: AppTextField(hint: 'TextArea', maxLines: 3),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildStructuralAtoms(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        AppShowcaseUnit(
+          label: 'List Item',
+          child: AppSurface(
+            child: AppListItem(
+              onTap: () {},
+              leading: const AppAvatar(imageUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80', size: 40),
+              title: 'Dries Vincent',
+              subtitle: 'dries.vincent@example.com',
+              trailing: const Icon(Icons.chevron_right, color: AppColors.gray400, size: 20),
+            ),
+          ),
+        ),
+        const AppShowcaseUnit(
+          label: 'Description Item',
+          child: AppSurface(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: AppDescriptionItem(
+              label: 'Role', 
+              content: Text('Director of Product', style: TextStyle(color: AppColors.gray500, fontSize: 14)),
+            ),
+          ),
+        ),
+        AppShowcaseUnit(
+          label: 'File Item',
+          child: AppSurface(
+            child: AppFileItem(fileName: 'resume_v2.pdf', fileSize: '4.2mb', onDownload: () {}),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPaginationAtoms(BuildContext context) {
+    return Row(
+      children: [
+        AppPaginationItem(text: '1', isActive: true, isFirst: true, onTap: () {}),
+        AppPaginationItem(text: '2', onTap: () {}),
+        AppPaginationItem(icon: const Icon(Icons.chevron_right, size: 18), isLast: true, onTap: () {}),
+      ],
+    );
+  }
+
+  Widget _buildMenuCombinations(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildItemLabel(context, 'Avatar Variants', 'Sizes & Online Indicators'),
-        const SizedBox(height: 20),
-        const Wrap(
-          spacing: 24,
-          crossAxisAlignment: WrapCrossAlignment.center,
+        _buildItemLabel(context, 'Dropdown', 'Alignment Strategy'),
+        const SizedBox(height: 24),
+        const Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            AppAvatar(imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80', size: 64, isOnline: true),
-            AppAvatar(imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80', size: 48),
-            AppAvatar(imageUrl: 'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80', size: 32, isOnline: true),
+            DropdownsClone(alignment: DropdownAlignment.left, title: 'Left'),
+            DropdownsClone(alignment: DropdownAlignment.center, title: 'Center'),
+            DropdownsClone(alignment: DropdownAlignment.right, title: 'Right'),
           ],
         ),
+        const SizedBox(height: 48),
+        _buildItemLabel(context, 'Select Menu', 'Avatar Data Selection'),
+        const SizedBox(height: 24),
+        const SelectmenusClone(),
       ],
     );
   }
 
-  Widget _buildListItemAtoms(BuildContext context) {
+  Widget _buildSectionCombinations(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildItemLabel(context, 'List Item Atom', 'Building block for data lists'),
-        const SizedBox(height: 20),
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Theme.of(context).colorScheme.outline),
-            borderRadius: BorderRadius.circular(AppDimensions.radiusMd),
-          ),
-          child: AppListItem(
-            onTap: () {}, // 클릭 이벤트 명시 (애니메이션 활성화용)
-            leading: const AppAvatar(imageUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80', size: 40),
-            title: 'Dries Vincent',
-            subtitle: 'dries.vincent@example.com',
-            trailing: const Icon(Icons.chevron_right, color: AppColors.gray500),
-          ),
-        ),
+        const AppFrame(title: 'bento_grid', child: BentoGridClone()),
+        const SizedBox(height: 80),
+        _buildItemLabel(context, 'Features Grid', '6.1.1 Icon & Grid System'),
+        const SizedBox(height: 24),
+        const FeaturesClone(),
+        const SizedBox(height: 80),
+        _buildItemLabel(context, 'Stacked List', '6.1.2 High Density Table'),
+        const SizedBox(height: 24),
+        const StackedlistsClone(),
+        const SizedBox(height: 80),
+        _buildItemLabel(context, 'Statistics', '6.1.3 Responsive Numerical Grid'),
+        const SizedBox(height: 24),
+        const SimplestatsClone(),
+        const SizedBox(height: 80),
+        _buildItemLabel(context, 'Description List', '6.1.4 Structured Information'),
+        const SizedBox(height: 24),
+        const DiscriptionlistsClone(),
+        const SizedBox(height: 80),
+        _buildItemLabel(context, 'Team Section', '6.1.5 Leadership Grid'),
+        const SizedBox(height: 24),
+        const TeamClone(),
+        const SizedBox(height: 80),
       ],
     );
   }
 
-  Widget _buildDescriptionAtoms(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildItemLabel(context, 'Description Item', 'Standard key-value row'),
-        const SizedBox(height: 20),
-        const AppDescriptionItem(
-          label: 'Salary expectation',
-          content: Text('\$120,000', style: TextStyle(color: AppColors.gray400)),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildFileAtoms(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildItemLabel(context, 'File Item Atom', 'Standard attachment row'),
-        const SizedBox(height: 20),
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Theme.of(context).colorScheme.outline),
-            borderRadius: BorderRadius.circular(AppDimensions.radiusMd),
-          ),
-          child: AppFileItem(
-            fileName: 'portfolio_design.pdf', 
-            fileSize: '12.8mb', 
-            onDownload: () {}
-          ),
-        ),
-      ],
-    );
-  }
-
-  // --- HELPERS ---
+  // --- STANDARD HELPERS ---
 
   Widget _buildCategoryHeader(BuildContext context, String title, String description) {
-    final colorScheme = Theme.of(context).colorScheme;
     return SliverToBoxAdapter(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(24, 80, 24, 32),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Container(width: 4, height: 24, color: AppColors.pointOrange),
-                const SizedBox(width: 12),
-                Text(title.toUpperCase(), style: AppTypography.headlineSmall.copyWith(fontWeight: FontWeight.w800)),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Text(description, style: AppTypography.bodySmall.copyWith(color: colorScheme.secondary)),
-            const SizedBox(height: 16),
-            Divider(color: colorScheme.outline, thickness: 1),
-          ],
-        ),
+        padding: const EdgeInsets.fromLTRB(24, 120, 24, 40),
+        child: AppSectionHeader(title: title, description: description),
       ),
     );
   }
@@ -311,14 +385,10 @@ class _ShowcasePageState extends State<ShowcasePage> {
   }
 
   Widget _buildItemLabel(BuildContext context, String name, String detail) {
-    final colorScheme = Theme.of(context).colorScheme;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(detail, style: AppTypography.labelSmall.copyWith(color: colorScheme.secondary.withOpacity(0.6), fontSize: 10, letterSpacing: 1.0, fontWeight: FontWeight.bold)),
-        const SizedBox(height: 4),
-        Text(name, style: AppTypography.titleMedium.copyWith(color: colorScheme.onSurface, fontWeight: FontWeight.bold)),
-      ],
+    return AppSectionHeader(
+      title: name,
+      description: detail,
+      variant: AppSectionHeaderVariant.item,
     );
   }
 
@@ -328,24 +398,28 @@ class _ShowcasePageState extends State<ShowcasePage> {
       children: [
         _buildItemLabel(context, 'Point Colors', 'Primary & Secondary Accents'),
         const SizedBox(height: 24),
-        Wrap(
-          spacing: 40,
-          children: [
-            _buildConfigItem(context, 'Orange', Container(width: 56, height: 56, decoration: const BoxDecoration(color: AppColors.pointOrange, shape: BoxShape.circle))),
-            _buildConfigItem(context, 'Gold', Container(width: 56, height: 56, decoration: const BoxDecoration(color: AppColors.pointGold, shape: BoxShape.circle))),
-          ],
+        AppShowcaseUnit(
+          label: 'Orange',
+          child: Container(width: 56, height: 56, decoration: const BoxDecoration(color: AppColors.pointOrange, shape: BoxShape.circle)),
+        ),
+        AppShowcaseUnit(
+          label: 'Gold',
+          child: Container(width: 56, height: 56, decoration: const BoxDecoration(color: AppColors.pointGold, shape: BoxShape.circle)),
         ),
         const SizedBox(height: 48),
         _buildItemLabel(context, 'Achromatic Palette', 'Neutral Grayscale'),
         const SizedBox(height: 24),
-        Wrap(
-          spacing: 12,
-          runSpacing: 12,
-          children: AppColors.palette.map((color) => Container(
-            width: 44, 
-            height: 44, 
-            decoration: BoxDecoration(color: color, shape: BoxShape.circle, border: Border.all(color: Theme.of(context).colorScheme.outline, width: 2))
-          )).toList(),
+        AppShowcaseUnit(
+          label: 'Gray Scale',
+          child: Wrap(
+            spacing: 12,
+            runSpacing: 12,
+            children: AppColors.palette.map((color) => Container(
+              width: 44, 
+              height: 44, 
+              decoration: BoxDecoration(color: color, shape: BoxShape.circle, border: Border.all(color: Theme.of(context).colorScheme.outline, width: 2))
+            )).toList(),
+          ),
         ),
       ],
     );
@@ -372,17 +446,11 @@ class _ShowcasePageState extends State<ShowcasePage> {
       children: [
         _buildItemLabel(context, category, 'Typography Scale'),
         const SizedBox(height: 24),
-        ...items.map((item) => Padding(
-          padding: const EdgeInsets.only(bottom: 24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('${item.$1} — ${item.$2.fontSize?.toInt()}px', style: AppTypography.labelSmall.copyWith(color: Theme.of(context).colorScheme.secondary, fontSize: 10)),
-              const SizedBox(height: 8),
-              Text('디자인은 어떻게 작동하는지입니다. Design is how it works.', style: item.$2),
-            ],
-          ),
-        )).toList(),
+        ...items.map((item) => AppShowcaseUnit(
+          label: item.$1,
+          value: '${item.$2.fontSize?.toInt()}px',
+          child: Text('디자인은 어떻게 작동하는지입니다. Design is how it works.', style: item.$2),
+        )),
       ],
     );
   }
@@ -403,7 +471,6 @@ class _ShowcasePageState extends State<ShowcasePage> {
         const SizedBox(height: 48),
         _buildItemLabel(context, 'Interaction', 'Subtle Feedback (Ripple)'),
         const SizedBox(height: 24),
-        // 인터랙션 테스트 버튼 무채색으로 수정
         AppButton(text: 'Click to test ripple', variant: AppButtonVariant.secondary, onPressed: () {}),
       ],
     );
@@ -416,35 +483,6 @@ class _ShowcasePageState extends State<ShowcasePage> {
         Text(value, style: AppTypography.headlineSmall.copyWith(color: AppColors.pointOrange)),
         const SizedBox(height: 4),
         Text(label, style: AppTypography.labelSmall.copyWith(color: Theme.of(context).colorScheme.secondary, fontSize: 10, fontWeight: FontWeight.bold)),
-      ],
-    );
-  }
-
-  Widget _buildDropdownShowcase(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildItemLabel(context, 'Alignment Options', 'Menu Positioning Strategy'),
-        const SizedBox(height: 32),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            DropdownsClone(alignment: DropdownAlignment.left, title: 'Left'),
-            DropdownsClone(alignment: DropdownAlignment.center, title: 'Center'),
-            DropdownsClone(alignment: DropdownAlignment.right, title: 'Right'),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget _buildConfigItem(BuildContext context, String label, Widget widget) {
-    return Column(
-      children: [
-        widget,
-        const SizedBox(height: 12),
-        Text(label, style: AppTypography.labelSmall.copyWith(color: Theme.of(context).colorScheme.secondary, fontSize: 10)),
       ],
     );
   }

@@ -1,0 +1,38 @@
+Category,Name,File Path,Description
+Foundation,Animations,lib/core/app_animations.dart,Standard durations and splash tokens for consistent motion.
+Foundation,Colors,lib/core/app_colors.dart,Strict palette of Neutrals and Point colors (Orange/Gold).
+Foundation,Dimensions,lib/core/app_dimensions.dart,Global spacing radii and component height standards.
+Foundation,Typography,lib/core/app_typography.dart,Intelligent font scales with Pretendard fallback.
+Atom,Avatar,lib/widgets/atoms/app_avatar.dart,Circular user image with optional AppBadge status.
+Atom,Badge,lib/widgets/atoms/app_badge.dart,Circular status indicator (Online notification dot).
+Atom,Button,lib/widgets/atoms/app_button.dart,Primary Secondary and Text variant buttons with intrinsic width.
+Atom,Checkbox,lib/widgets/atoms/app_checkbox.dart,Stateful selection control with scale & fade animation.
+Atom,Description Item,lib/widgets/atoms/app_description_item.dart,Label-content pair used for structured data displays.
+Atom,Drawer,lib/widgets/atoms/app_drawer.dart,Sliding side panel container with header and footer support.
+Atom,Feature Item,lib/widgets/atoms/app_feature_item.dart,Icon-title-description block for marketing grids using AppIconBox.
+Atom,File Item,lib/widgets/atoms/app_file_item.dart,File attachment row with name size and download action.
+Atom,Icon Box,lib/widgets/atoms/app_icon_box.dart,Standardized rounded container for icons with point colors.
+Atom,Icon Button,lib/widgets/atoms/app_icon_button.dart,Standardized square button for standalone icons.
+Atom,List Item,lib/widgets/atoms/app_list_item.dart,Classic navigation row with leading avatar and text details.
+Atom,Logo,lib/widgets/atoms/app_logo.dart,System branding (Bolt icon + ATOMIC text) atom.
+Atom,Nav Item,lib/widgets/atoms/app_nav_item.dart,Header navigation link with hover states and optional dropdown icon.
+Atom,Pagination Item,lib/widgets/atoms/app_pagination_item.dart,Individual page number or icon box with isolation group rounding.
+Atom,Pill,lib/widgets/atoms/app_pill.dart,Text-based status badge or tag with subtle point backgrounds.
+Atom,Section Header,lib/widgets/atoms/app_section_header.dart,Standardized category and item headers for layouts.
+Atom,Stat Item,lib/widgets/atoms/app_stat_item.dart,Large numerical display with descriptive label for metrics.
+Atom,Surface,lib/widgets/atoms/app_surface.dart,Base container with system-standard border radius and color.
+Atom,Text Field,lib/widgets/atoms/app_text_field.dart,Standard input with prefix support and unified padding.
+Clone,Bento Grid,lib/widgets/clones/bento_grid_clone.dart,Complex visual grid using AppSurface and AppIconBox.
+Clone,Description Lists,lib/widgets/clones/discriptionlists_clone.dart,Section template showcasing multiple Description Items.
+Clone,Drawers Demo,lib/widgets/clones/drawers_clone.dart,Interactive implementation of the AppDrawer atom.
+Clone,Dropdowns,lib/widgets/clones/dropdowns_clone.dart,Menu overlays with various alignment strategies (Left/Center/Right).
+Clone,Features Grid,lib/widgets/clones/features_clone.dart,Responsive 2x2 grid using AppFeatureItem and AppSurface.
+Clone,Form Layouts,lib/widgets/clones/formlayouts_clone.dart,Complex setting/profile page form with multiple input types.
+Clone,Headers,lib/widgets/clones/headers_clone.dart,Responsive navigation bar with logo and desktop/mobile states.
+Clone,Hero Section,lib/widgets/clones/hero_clone.dart,Marketing hero template with gradients and AppPill.
+Clone,Login & Out,lib/widgets/clones/loginandout_clone.dart,Authentication page template (Sign-in form).
+Clone,Pagination Bar,lib/widgets/clones/pagination_clone.dart,Full navigational bar with info text and pagination items.
+Clone,Select Menus,lib/widgets/clones/selectmenus_clone.dart,Custom dropdown select with avatar and description data.
+Clone,Simple Stats,lib/widgets/clones/simplestats_clone.dart,Responsive numerical grid using AppStatItem atoms.
+Clone,Stacked Lists,lib/widgets/clones/stackedlists_clone.dart,High-density data table using AppListItem atoms.
+Clone,Team Section,lib/widgets/clones/team_clone.dart,Leadership bio grid with avatars and roles.

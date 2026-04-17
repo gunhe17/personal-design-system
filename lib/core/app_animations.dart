@@ -16,8 +16,8 @@ class AppAnimations {
   static Color splashColor(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return isDark 
-        ? Colors.white.withOpacity(0.03) 
-        : Colors.black.withOpacity(0.015);
+        ? Colors.white.withValues(alpha: 0.03) 
+        : Colors.black.withValues(alpha: 0.015);
   }
 
   // --- Component Specifics ---

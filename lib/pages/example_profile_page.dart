@@ -94,7 +94,7 @@ class ExampleProfilePage extends StatelessWidget {
           Switch(
             value: value,
             onChanged: (v) {},
-            activeColor: AppColors.pointOrange,
+            activeThumbColor: AppColors.pointOrange,
           ),
         ],
       ),

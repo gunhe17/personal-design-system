@@ -65,7 +65,7 @@ class DesignSystemApp extends StatelessWidget {
 
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: colorScheme.surface,
-        indicatorColor: colorScheme.primary.withOpacity(0.1),
+        indicatorColor: colorScheme.primary.withValues(alpha: 0.1),
         iconTheme: WidgetStateProperty.all(IconThemeData(size: 24, color: colorScheme.onSurface)),
         labelTextStyle: WidgetStateProperty.all(AppTypography.labelSmall.copyWith(color: colorScheme.onSurface)),
       ),

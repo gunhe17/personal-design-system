@@ -64,7 +64,7 @@ class AppColors {
     if (level <= 0) return [];
     return [
       BoxShadow(
-        color: Colors.black.withOpacity(isDark ? 0.4 : 0.05 + (level * 0.02)),
+        color: Colors.black.withValues(alpha: isDark ? 0.4 : 0.05 + (level * 0.02)),
         blurRadius: level * 4.0,
         offset: Offset(0, level * 2.0),
       ),

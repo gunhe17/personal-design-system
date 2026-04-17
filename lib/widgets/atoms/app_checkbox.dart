@@ -44,7 +44,7 @@ class _AppCheckboxState extends State<AppCheckbox> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     
     final Color activeColor = isDark ? AppColors.gray400 : AppColors.gray800;
-    final Color inactiveColor = Colors.transparent;
+    const Color inactiveColor = Colors.transparent;
     final Color borderColor = _currentValue 
         ? activeColor 
         : (isDark ? AppColors.gray800 : AppColors.gray300);

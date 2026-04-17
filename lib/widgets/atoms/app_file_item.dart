@@ -23,7 +23,7 @@ class AppFileItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Row(
         children: [
-          Icon(Icons.attach_file, size: 16, color: AppColors.gray500),
+          const Icon(Icons.attach_file, size: 16, color: AppColors.gray500),
           const SizedBox(width: 12),
           Expanded(
             child: Row(

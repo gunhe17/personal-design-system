@@ -31,9 +31,11 @@ class AppTextField extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-          height: maxLines > 1 ? null : AppDimensions.componentHeight,
+          constraints: const BoxConstraints(
+            minHeight: AppDimensions.componentHeight,
+          ),
           decoration: BoxDecoration(
-            color: isDark ? Colors.white.withOpacity(0.05) : Colors.white,
+            color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
             borderRadius: BorderRadius.circular(AppDimensions.radiusMd),
             border: Border.all(color: borderColor),
           ),
@@ -44,7 +46,8 @@ class AppTextField extends StatelessWidget {
               if (prefix != null)
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
-                  height: AppDimensions.componentHeight - 2, // 보더 두께 제외
+                  // Prefix height aligns with componentHeight minus borders
+                  constraints: const BoxConstraints(minHeight: AppDimensions.componentHeight - 2),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     border: Border(right: BorderSide(color: borderColor)),
@@ -53,7 +56,7 @@ class AppTextField extends StatelessWidget {
                     prefix!, 
                     style: AppTypography.bodySmall.copyWith(
                       color: AppColors.gray500,
-                      height: 1.2, // 폰트 정렬을 위한 높이 조정
+                      height: 1.2,
                     ),
                   ),
                 ),
@@ -75,10 +78,9 @@ class AppTextField extends StatelessWidget {
                     filled: false,
                     hintText: hint,
                     hintStyle: AppTypography.bodySmall.copyWith(color: AppColors.gray500, height: 1.2),
-                    // 핵심: 상하 여백을 동일하게 주어 텍스트 엔진이 중앙을 잡게 함
                     contentPadding: const EdgeInsets.symmetric(
                       horizontal: 12,
-                      vertical: 10, 
+                      vertical: 13, // Unified vertical padding for optical centering
                     ),
                     border: InputBorder.none,
                     enabledBorder: InputBorder.none,

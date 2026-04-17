@@ -3,6 +3,7 @@ import '../../core/app_colors.dart';
 import '../../core/app_typography.dart';
 import '../atoms/app_avatar.dart';
 import '../atoms/app_list_item.dart';
+import '../atoms/app_badge.dart';
 
 class StackedlistsClone extends StatelessWidget {
   const StackedlistsClone({super.key});
@@ -10,7 +11,7 @@ class StackedlistsClone extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final dividerColor = isDark ? Colors.white.withOpacity(0.05) : AppColors.gray200;
+    final dividerColor = isDark ? Colors.white.withValues(alpha: 0.05) : AppColors.gray200;
 
     return Column(
       children: [
@@ -73,14 +74,7 @@ class StackedlistsClone extends StatelessWidget {
           if (isOnline)
             Row(
               children: [
-                Container(
-                  width: 6,
-                  height: 6,
-                  decoration: const BoxDecoration(
-                    color: Color(0xFF10B981),
-                    shape: BoxShape.circle,
-                  ),
-                ),
+                const AppBadge(variant: AppBadgeVariant.online, size: 8),
                 const SizedBox(width: 6),
                 Text(
                   'Online',

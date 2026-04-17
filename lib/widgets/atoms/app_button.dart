@@ -34,13 +34,12 @@ class _AppButtonState extends State<AppButton> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     
     if (widget.variant == AppButtonVariant.text) {
-      return _buildTextButton(isDark);
+      return _buildPureTextButton(isDark);
     }
 
     return _buildStandardButton(isDark);
   }
 
-  // 1. 일반 버튼 (Primary/Secondary) - 영역 유지
   Widget _buildStandardButton(bool isDark) {
     Color backgroundColor;
     Color textColor;
@@ -50,7 +49,7 @@ class _AppButtonState extends State<AppButton> {
       backgroundColor = AppColors.pointOrange;
       textColor = Colors.white;
     } else {
-      backgroundColor = isDark ? Colors.white.withOpacity(0.05) : AppColors.gray100;
+      backgroundColor = isDark ? Colors.white.withValues(alpha: 0.05) : AppColors.gray100;
       textColor = isDark ? Colors.white : AppColors.gray900;
       borderSide = BorderSide(color: isDark ? AppColors.gray800 : AppColors.gray200);
     }
@@ -60,7 +59,7 @@ class _AppButtonState extends State<AppButton> {
       child: UnconstrainedBox(
         alignment: Alignment.centerLeft,
         constrainedAxis: widget.fullWidth ? Axis.horizontal : null,
-        child: Container(
+        child: SizedBox(
           width: widget.fullWidth ? double.infinity : null,
           height: AppDimensions.componentHeight,
           child: Material(
@@ -87,8 +86,7 @@ class _AppButtonState extends State<AppButton> {
     );
   }
 
-  // 2. 텍스트 버튼 - 텍스트 크기로 애니메이션 영역 축소
-  Widget _buildTextButton(bool isDark) {
+  Widget _buildPureTextButton(bool isDark) {
     final textColor = _isHovered 
         ? (isDark ? Colors.white : AppColors.gray900) 
         : (isDark ? AppColors.gray400 : AppColors.gray600);
@@ -98,24 +96,15 @@ class _AppButtonState extends State<AppButton> {
       child: MouseRegion(
         onEnter: (_) => setState(() => _isHovered = true),
         onExit: (_) => setState(() => _isHovered = false),
-        child: IntrinsicWidth( // 텍스트 크기에 맞게 너비 축소
+        cursor: widget.onPressed != null ? SystemMouseCursors.click : SystemMouseCursors.basic,
+        child: GestureDetector(
+          onTap: widget.onPressed,
+          behavior: HitTestBehavior.opaque,
           child: Container(
             height: AppDimensions.componentHeight,
             alignment: Alignment.centerLeft,
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                onTap: widget.onPressed,
-                borderRadius: BorderRadius.circular(4), // 텍스트 주변의 타이트한 곡률
-                splashColor: AppAnimations.splashColor(context).withOpacity(0.05), // 더욱 옅게
-                splashFactory: AppAnimations.splashFactory,
-                highlightColor: Colors.transparent,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2), // 텍스트와 거의 붙는 최소 여백
-                  child: _buildContent(textColor, isText: true),
-                ),
-              ),
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            child: _buildContent(textColor, isText: true),
           ),
         ),
       ),
