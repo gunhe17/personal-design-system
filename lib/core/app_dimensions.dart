@@ -1,38 +1,46 @@
 class AppDimensions {
-  // 베이스 간격 (8px 그리드 시스템)
-  static const double s4 = 4.0;
-  static const double s8 = 8.0;
-  static const double s12 = 12.0;
-  static const double s16 = 16.0;
-  static const double s24 = 24.0;
-  static const double s32 = 32.0;
-  static const double s40 = 40.0;
-  static const double s48 = 48.0;
-  static const double s64 = 64.0;
+  // Tailwind Spacing Scale
+  static const double s1 = 4.0;
+  static const double s2 = 8.0;
+  static const double s3 = 12.0;
+  static const double s4 = 16.0;
+  static const double s5 = 20.0;
+  static const double s6 = 24.0;
+  static const double s8 = 32.0;
+  static const double s10 = 40.0;
+  static const double s12 = 48.0;
+  static const double s16 = 64.0;
+  static const double s20 = 80.0;
+  static const double s24 = 96.0;
   
-  // --- 표준 컴포넌트 규격 (S / M / L) ---
-  // 모든 버튼, FAB, 아바타, 입력창은 이 규격을 따릅니다.
-  static const double sizeSmall = 36.0;
-  static const double sizeMedium = 44.0;
-  static const double sizeLarge = 52.0;
+  // --- 표준 컴포넌트 규격 (Standard System) ---
+  
+  // 1. 컴포넌트 높이 (Component Heights)
+  static const double componentHeight = 40.0; // 기본 버튼, 입력창 높이
+  static const double componentHeightDense = 32.0; 
+  
+  // 2. 내부 여백 (Internal Padding)
+  static const double paddingHorizontal = 12.0;
+  static const double paddingVertical = 9.0; // (40 - 22) / 2 가량의 텍스트 수직 중앙 정렬값
+  
+  // 3. 요소 간 간격 (Inter-element Spacing)
+  static const double gapTitle = 4.0;
+  static const double gapDescription = 8.0;
+  static const double gapField = 16.0;
+  static const double gapSection = 40.0;
 
-  // 컴포넌트 높이 (규격과 동일하게 유지하여 일관성 확보)
-  static const double heightSmall = sizeSmall;
-  static const double heightMedium = sizeMedium;
-  static const double heightLarge = sizeLarge;
-
-  // 입력창 너비
+  // 4. 입력창 너비 (Input Widths)
   static const double inputWidthStandard = 320.0;
-  static const double inputWidthNarrow = 160.0;
   
-  // 전역 곡률
-  static const double radiusSmall = 4.0;
-  static const double radiusMedium = 8.0;
-  static const double radiusLarge = 12.0;
-  static const double radiusFull = 100.0;
+  // Tailwind Border Radius
+  static const double radiusSm = 2.0;
+  static const double radiusMd = 6.0;
+  static const double radiusLg = 8.0;
+  static const double radiusFull = 9999.0;
+
+  // Backward compatibility
+  static const double radiusMedium = radiusMd;
   
   // 레이아웃
-  static const double contentMaxWidth = 800.0;
-  static const double sectionSpacing = 80.0;
-  static const double itemSpacing = 32.0;
+  static const double contentMaxWidth = 1200.0;
 }

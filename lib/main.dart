@@ -24,7 +24,9 @@ class DesignSystemApp extends StatelessWidget {
       // Dark Theme
       darkTheme: _buildTheme(AppColors.darkScheme()),
       
-      home: const ShowcasePage(),
+      home: const SelectionArea(
+        child: ShowcasePage(),
+      ),
     );
   }
 
@@ -32,7 +34,6 @@ class DesignSystemApp extends StatelessWidget {
     return ThemeData(
       useMaterial3: true,
       colorScheme: colorScheme,
-      fontFamily: AppTypography.fontFamily,
       scaffoldBackgroundColor: colorScheme.surface,
       
       inputDecorationTheme: InputDecorationTheme(
@@ -64,7 +65,7 @@ class DesignSystemApp extends StatelessWidget {
 
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: colorScheme.surface,
-        indicatorColor: colorScheme.primary.withValues(alpha: 0.1),
+        indicatorColor: colorScheme.primary.withOpacity(0.1),
         iconTheme: WidgetStateProperty.all(IconThemeData(size: 24, color: colorScheme.onSurface)),
         labelTextStyle: WidgetStateProperty.all(AppTypography.labelSmall.copyWith(color: colorScheme.onSurface)),
       ),
