@@ -35,9 +35,9 @@ class AppDrawer extends StatefulWidget {
       transitionBuilder: (context, animation, secondaryAnimation, child) {
         return SlideTransition(
           position: Tween<Offset>(
-            begin: const Offset(1, 0),
+            begin: AppAnimations.slideInFromRight,
             end: Offset.zero,
-          ).animate(CurvedAnimation(parent: animation, curve: Curves.easeInOut)),
+          ).animate(CurvedAnimation(parent: animation, curve: AppAnimations.intenseCurve)),
           child: child,
         );
       },

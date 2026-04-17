@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
 import '../../core/app_typography.dart';
-
-enum AppSectionHeaderVariant { category, item }
+enum AppSectionHeaderVariant { category, item, section }
 
 class AppSectionHeader extends StatelessWidget {
   final String title;
@@ -19,6 +18,31 @@ class AppSectionHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    if (variant == AppSectionHeaderVariant.section) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title, 
+            style: AppTypography.titleLarge.copyWith(
+              color: isDark ? Colors.white : AppColors.gray900, 
+              fontWeight: FontWeight.w800,
+            ),
+          ),
+          if (description != null) ...[
+            const SizedBox(height: 4),
+            Text(
+              description!, 
+              style: AppTypography.bodySmall.copyWith(color: AppColors.gray500),
+            ),
+          ],
+          const SizedBox(height: 16),
+          Divider(color: isDark ? AppColors.gray800 : AppColors.gray200, height: 1),
+        ],
+      );
+    }
 
     if (variant == AppSectionHeaderVariant.item) {
       return Column(

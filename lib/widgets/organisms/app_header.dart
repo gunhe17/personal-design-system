@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
-import '../atoms/app_nav_item.dart';
 import '../atoms/app_icon_button.dart';
 import '../atoms/app_button.dart';
 import '../atoms/app_logo.dart';
 
-class HeadersClone extends StatelessWidget {
-  const HeadersClone({super.key});
+class AppHeader extends StatelessWidget {
+  const AppHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +30,13 @@ class HeadersClone extends StatelessWidget {
 
                 if (!isMobile) ...[
                   // Desktop Nav
-                  const AppNavItem(text: 'Product', hasDropdown: true),
-                  const SizedBox(width: 32),
-                  const AppNavItem(text: 'Features'),
-                  const SizedBox(width: 32),
-                  const AppNavItem(text: 'Marketplace'),
-                  const SizedBox(width: 32),
-                  const AppNavItem(text: 'Company'),
+                  AppButton(text: 'Product', variant: AppButtonVariant.text, icon: Icons.keyboard_arrow_down, onPressed: () {}),
+                  const SizedBox(width: 16),
+                  AppButton(text: 'Features', variant: AppButtonVariant.text, onPressed: () {}),
+                  const SizedBox(width: 16),
+                  AppButton(text: 'Marketplace', variant: AppButtonVariant.text, onPressed: () {}),
+                  const SizedBox(width: 16),
+                  AppButton(text: 'Company', variant: AppButtonVariant.text, onPressed: () {}),
                   
                   const Spacer(),
                   

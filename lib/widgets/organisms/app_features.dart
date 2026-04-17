@@ -5,8 +5,8 @@ import '../atoms/app_feature_item.dart';
 import '../atoms/app_surface.dart';
 import '../atoms/app_pill.dart';
 
-class FeaturesClone extends StatelessWidget {
-  const FeaturesClone({super.key});
+class AppFeatures extends StatelessWidget {
+  const AppFeatures({super.key});
 
   @override
   Widget build(BuildContext context) {

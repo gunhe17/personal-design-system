@@ -20,7 +20,14 @@ class AppAnimations {
         : Colors.black.withValues(alpha: 0.015);
   }
 
-  // --- Component Specifics ---
+  // --- Slide ---
+  static const Offset slideInFromRight = Offset(1, 0);
+
+  // --- Component Scale ---
   static const double dropdownScaleBegin = 0.95;
-  static const double dropdownFadeBegin = 0.0;
+  static const double selectScaleBegin = 0.98;
+  static const double checkboxScaleBegin = 0.5;
+
+  // --- Fade ---
+  static const double fadeBegin = 0.0;
 }

@@ -20,7 +20,7 @@ class AppFrame extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: AppDimensions.s8),
+      margin: const EdgeInsets.symmetric(vertical: 32),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(AppDimensions.radiusLg),

@@ -3,10 +3,10 @@ import '../../core/app_colors.dart';
 import '../../core/app_typography.dart';
 import '../atoms/app_avatar.dart';
 import '../atoms/app_list_item.dart';
-import '../atoms/app_badge.dart';
+import '../atoms/app_status_indicator.dart';
 
-class StackedlistsClone extends StatelessWidget {
-  const StackedlistsClone({super.key});
+class AppStackedList extends StatelessWidget {
+  const AppStackedList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,6 @@ class StackedlistsClone extends StatelessWidget {
     return Column(
       children: [
         _buildItem(
-          imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
           name: 'Leslie Alexander',
           email: 'leslie.alexander@example.com',
           role: 'Co-Founder / CEO',
@@ -25,7 +24,6 @@ class StackedlistsClone extends StatelessWidget {
         ),
         Divider(color: dividerColor, height: 1),
         _buildItem(
-          imageUrl: 'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
           name: 'Michael Foster',
           email: 'michael.foster@example.com',
           role: 'Co-Founder / CTO',
@@ -34,7 +32,6 @@ class StackedlistsClone extends StatelessWidget {
         ),
         Divider(color: dividerColor, height: 1),
         _buildItem(
-          imageUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
           name: 'Dries Vincent',
           email: 'dries.vincent@example.com',
           role: 'Business Relations',
@@ -47,7 +44,6 @@ class StackedlistsClone extends StatelessWidget {
   }
 
   Widget _buildItem({
-    required String imageUrl,
     required String name,
     required String email,
     required String role,
@@ -57,7 +53,7 @@ class StackedlistsClone extends StatelessWidget {
   }) {
     return AppListItem(
       onTap: () {}, // 애니메이션 활성화를 위한 콜백 추가
-      leading: AppAvatar(imageUrl: imageUrl, isOnline: isOnline),
+      leading: AppAvatar(isOnline: isOnline),
       title: name,
       subtitle: email,
       trailing: Column(
@@ -71,22 +67,7 @@ class StackedlistsClone extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 4),
-          if (isOnline)
-            Row(
-              children: [
-                const AppBadge(variant: AppBadgeVariant.online, size: 8),
-                const SizedBox(width: 6),
-                Text(
-                  'Online',
-                  style: AppTypography.labelSmall.copyWith(color: AppColors.gray500, fontSize: 11),
-                ),
-              ],
-            )
-          else
-            Text(
-              'Last seen $status',
-              style: AppTypography.labelSmall.copyWith(color: AppColors.gray500, fontSize: 11),
-            ),
+          AppStatusIndicator(isOnline: isOnline, lastSeen: status),
         ],
       ),
     );

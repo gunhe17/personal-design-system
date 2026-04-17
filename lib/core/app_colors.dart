@@ -70,9 +70,4 @@ class AppColors {
       ),
     ];
   }
-
-  static const List<Color> palette = [
-    gray950, gray900, gray800, gray700, gray600, gray500, 
-    gray400, gray300, gray200, gray100, gray50
-  ];
 }

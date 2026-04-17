@@ -71,7 +71,7 @@ class _AppCheckboxState extends State<AppCheckbox> {
               duration: AppAnimations.fast,
               transitionBuilder: (Widget child, Animation<double> animation) {
                 return ScaleTransition(
-                  scale: animation.drive(Tween<double>(begin: 0.5, end: 1.0)),
+                  scale: animation.drive(Tween<double>(begin: AppAnimations.checkboxScaleBegin, end: 1.0)),
                   child: FadeTransition(opacity: animation, child: child),
                 );
               },

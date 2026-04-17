@@ -6,6 +6,7 @@ class AppShowcaseUnit extends StatelessWidget {
   final String? value;
   final Widget child;
   final double bottomPadding;
+  final CrossAxisAlignment crossAxisAlignment;
 
   const AppShowcaseUnit({
     super.key,
@@ -13,6 +14,7 @@ class AppShowcaseUnit extends StatelessWidget {
     this.value,
     required this.child,
     this.bottomPadding = 40.0,
+    this.crossAxisAlignment = CrossAxisAlignment.start,
   });
 
   @override
@@ -20,7 +22,7 @@ class AppShowcaseUnit extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(bottom: bottomPadding),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: crossAxisAlignment,
         mainAxisSize: MainAxisSize.min,
         children: [
           // 01. Info Label (e.g., Large — 24px)

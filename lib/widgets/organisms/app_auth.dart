@@ -3,10 +3,11 @@ import '../../core/app_colors.dart';
 import '../../core/app_dimensions.dart';
 import '../../core/app_typography.dart';
 import '../atoms/app_button.dart';
+import '../atoms/app_field_label.dart';
 import '../atoms/app_text_field.dart';
 
-class LoginandoutClone extends StatelessWidget {
-  const LoginandoutClone({super.key});
+class AppAuth extends StatelessWidget {
+  const AppAuth({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,24 +32,24 @@ class LoginandoutClone extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 48),
-              Column(
+              const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildLabel('Email address', isDark),
-                  const SizedBox(height: AppDimensions.gapDescription),
-                  const AppTextField(hint: 'gunhee@example.com'),
-                  const SizedBox(height: 24),
+                  AppFieldLabel(label: 'Email address'),
+                  SizedBox(height: AppDimensions.gapDescription),
+                  AppTextField(hint: 'gunhee@example.com'),
+                  SizedBox(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _buildLabel('Password', isDark),
-                      const AppButton(text: 'Forgot password?', variant: AppButtonVariant.text),
+                      AppFieldLabel(label: 'Password'),
+                      AppButton(text: 'Forgot password?', variant: AppButtonVariant.text),
                     ],
                   ),
-                  const SizedBox(height: AppDimensions.gapDescription),
-                  const AppTextField(hint: '••••••••', isPassword: true),
-                  const SizedBox(height: 32),
-                  const AppButton(text: 'Sign in', fullWidth: true),
+                  SizedBox(height: AppDimensions.gapDescription),
+                  AppTextField(hint: '••••••••', isPassword: true),
+                  SizedBox(height: 32),
+                  AppButton(text: 'Sign in', fullWidth: true),
                 ],
               ),
               const SizedBox(height: 40),
@@ -66,16 +67,6 @@ class LoginandoutClone extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildLabel(String label, bool isDark) {
-    return Text(
-      label,
-      style: AppTypography.labelMedium.copyWith(
-        color: isDark ? Colors.white : AppColors.gray900,
-        fontWeight: FontWeight.w600,
       ),
     );
   }

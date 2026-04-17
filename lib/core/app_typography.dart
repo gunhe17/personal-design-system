@@ -62,13 +62,6 @@ class AppTypography {
     fontFamilyFallback: fontFamilyFallback,
   );
 
-  static const TextStyle titleSmall = TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w600,
-    height: 1.5,
-    fontFamilyFallback: fontFamilyFallback,
-  );
-
   static const TextStyle bodyLarge = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w400,
@@ -87,13 +80,6 @@ class AppTypography {
     fontSize: 14,
     fontWeight: FontWeight.w400,
     height: 1.6,
-    fontFamilyFallback: fontFamilyFallback,
-  );
-
-  static const TextStyle labelLarge = TextStyle(
-    fontSize: 15,
-    fontWeight: FontWeight.w600,
-    height: 1.4,
     fontFamilyFallback: fontFamilyFallback,
   );
 

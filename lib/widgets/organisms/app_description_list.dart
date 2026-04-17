@@ -4,9 +4,10 @@ import '../../core/app_typography.dart';
 import '../atoms/app_description_item.dart';
 import '../atoms/app_file_item.dart';
 import '../atoms/app_surface.dart';
+import '../atoms/app_section_header.dart';
 
-class DiscriptionlistsClone extends StatelessWidget {
-  const DiscriptionlistsClone({super.key});
+class AppDescriptionList extends StatelessWidget {
+  const AppDescriptionList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,20 +19,12 @@ class DiscriptionlistsClone extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Applicant Information',
-            style: AppTypography.titleLarge.copyWith(
-              color: isDark ? Colors.white : AppColors.gray900,
-              fontWeight: FontWeight.w800,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            'Personal details and application.',
-            style: AppTypography.bodySmall.copyWith(color: AppColors.gray500),
+          const AppSectionHeader(
+            title: 'Applicant Information',
+            description: 'Personal details and application.',
+            variant: AppSectionHeaderVariant.section,
           ),
           const SizedBox(height: 24),
-          Divider(color: dividerColor, height: 1),
 
           AppDescriptionItem(
             label: 'Full name',

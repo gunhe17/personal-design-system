@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
 import '../../core/app_typography.dart';
-import '../../core/app_dimensions.dart';
+import '../atoms/app_announcement_badge.dart';
 import '../atoms/app_button.dart';
-import '../atoms/app_surface.dart';
 
-class HeroClone extends StatelessWidget {
-  const HeroClone({super.key});
+class AppHero extends StatelessWidget {
+  const AppHero({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,32 +17,41 @@ class HeroClone extends StatelessWidget {
       decoration: BoxDecoration(
         color: isDark ? AppColors.gray950 : Colors.white,
       ),
+      clipBehavior: Clip.none,
       child: Stack(
+        clipBehavior: Clip.none,
+        alignment: Alignment.center,
         children: [
           // Background Gradient Effect (Subtle)
           Positioned(
-            top: -100,
-            left: 100,
-            child: Container(
-              width: 300,
-              height: 300,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: RadialGradient(
-                  colors: [
-                    AppColors.pointOrange.withValues(alpha: 0.1),
-                    AppColors.pointOrange.withValues(alpha: 0),
-                  ],
+            top: -80,
+            left: 0,
+            right: 0,
+            child: Center(
+              child: Container(
+                width: 400,
+                height: 400,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: RadialGradient(
+                    colors: [
+                      AppColors.pointOrange.withValues(alpha: 0.08),
+                      AppColors.pointOrange.withValues(alpha: 0),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
-          
+
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               // Announcement Badge
-              _buildBadge(context, isDark),
+              const AppAnnouncementBadge(
+                text: 'Announcing our next round of funding.',
+                actionText: 'Read more →',
+              ),
               
               const SizedBox(height: 32),
               
@@ -94,31 +102,6 @@ class HeroClone extends StatelessWidget {
                 ],
               ),
             ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildBadge(BuildContext context, bool isDark) {
-    return AppSurface(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-      borderRadius: BorderRadius.circular(AppDimensions.radiusFull),
-      color: Colors.transparent,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            'Announcing our next round of funding.',
-            style: AppTypography.labelSmall.copyWith(color: AppColors.gray500),
-          ),
-          const SizedBox(width: 8),
-          Text(
-            'Read more →',
-            style: AppTypography.labelSmall.copyWith(
-              color: AppColors.pointOrange,
-              fontWeight: FontWeight.bold,
-            ),
           ),
         ],
       ),

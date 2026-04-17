@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
 import '../../core/app_typography.dart';
+import '../atoms/app_avatar_group.dart';
 import '../atoms/app_button.dart';
-import '../atoms/app_drawer.dart';
 import '../atoms/app_description_item.dart';
-import '../atoms/app_avatar.dart';
+import '../atoms/app_drawer.dart';
 
-class DrawersClone extends StatelessWidget {
-  const DrawersClone({super.key});
+class AppSlideOver extends StatelessWidget {
+  const AppSlideOver({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,14 +46,8 @@ class DrawersClone extends StatelessWidget {
           
           const AppDescriptionItem(
             label: 'Team Members',
-            content: Row(
-              children: [
-                AppAvatar(imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80', size: 24),
-                SizedBox(width: 8),
-                AppAvatar(imageUrl: 'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80', size: 24),
-                SizedBox(width: 8),
-                AppAvatar(imageUrl: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80', size: 24),
-              ],
+            content: AppAvatarGroup(
+              imageUrls: [],
             ),
           ),
           const Divider(height: 32, thickness: 0.5),

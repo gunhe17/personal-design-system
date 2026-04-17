@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../atoms/app_stat_item.dart';
 
-class SimplestatsClone extends StatelessWidget {
-  const SimplestatsClone({super.key});
+class AppStatsSection extends StatelessWidget {
+  const AppStatsSection({super.key});
 
   @override
   Widget build(BuildContext context) {

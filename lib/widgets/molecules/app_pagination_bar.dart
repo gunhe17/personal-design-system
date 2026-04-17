@@ -4,11 +4,11 @@ import '../../core/app_typography.dart';
 import '../atoms/app_button.dart';
 import '../atoms/app_pagination_item.dart';
 
-class PaginationClone extends StatelessWidget {
+class AppPaginationBar extends StatelessWidget {
   final int currentPage;
   final int totalPages;
 
-  const PaginationClone({
+  const AppPaginationBar({
     super.key,
     this.currentPage = 1,
     this.totalPages = 10,
