@@ -1,10 +1,15 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'pages/showcase_page.dart';
 import 'core/app_colors.dart';
 import 'core/app_dimensions.dart';
 import 'core/app_typography.dart';
+import 'widgets/dev/showcase_edit_panel.dart';
 
 void main() {
+  if (kDebugMode) {
+    ShowcaseEditPanel.register();
+  }
   runApp(const DesignSystemApp());
 }
 

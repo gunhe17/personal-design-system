@@ -37,6 +37,11 @@ migrate_working_dir/
 /flutter/
 /.vercel/
 
+# Local showcase edit snapshots (dev-only)
+/.versions/
+/tools/dev_server/.dart_tool/
+/tools/dev_server/pubspec.lock
+
 # Symbolication related
 app.*.symbols
 

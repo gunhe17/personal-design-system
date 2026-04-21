@@ -7,6 +7,7 @@ class AppIconButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final double size;
   final Color? color;
+  final EdgeInsetsGeometry padding;
 
   const AppIconButton({
     super.key,
@@ -14,6 +15,7 @@ class AppIconButton extends StatelessWidget {
     this.onPressed,
     this.size = 20.0,
     this.color,
+    this.padding = const EdgeInsets.all(8.0),
   });
 
   @override
@@ -32,7 +34,7 @@ class AppIconButton extends StatelessWidget {
           splashFactory: AppAnimations.splashFactory,
           highlightColor: Colors.transparent,
           child: Padding(
-            padding: const EdgeInsets.all(8.0), // 클릭 영역 확보
+            padding: padding,
             child: Icon(
               icon,
               size: size,

@@ -13,7 +13,10 @@ import '../widgets/atoms/app_bento_box.dart';
 import '../widgets/atoms/app_blog_card.dart';
 import '../widgets/atoms/app_button.dart';
 import '../widgets/atoms/app_checkbox.dart';
+import '../widgets/atoms/app_code_block.dart';
 import '../widgets/atoms/app_description_item.dart';
+import '../widgets/atoms/app_diff_view.dart';
+import '../widgets/atoms/app_dotted_line.dart';
 import '../widgets/atoms/app_feature_item.dart';
 import '../widgets/atoms/app_field_label.dart';
 import '../widgets/atoms/app_file_item.dart';
@@ -21,6 +24,7 @@ import '../widgets/atoms/app_form_field.dart';
 import '../widgets/atoms/app_icon_box.dart';
 import '../widgets/atoms/app_icon_button.dart';
 import '../widgets/atoms/app_image_placeholder.dart';
+import '../widgets/atoms/app_inactive_placeholder.dart';
 import '../widgets/atoms/app_list_item.dart';
 import '../widgets/atoms/app_logo.dart';
 import '../widgets/atoms/app_pagination_item.dart';
@@ -34,6 +38,8 @@ import '../widgets/atoms/app_status_indicator.dart';
 import '../widgets/atoms/app_surface.dart';
 import '../widgets/atoms/app_team_member_card.dart';
 import '../widgets/atoms/app_text_field.dart';
+import '../widgets/atoms/app_toggle.dart';
+import '../widgets/atoms/app_tool_box.dart';
 // Molecules
 import '../widgets/molecules/app_dropdown.dart';
 import '../widgets/molecules/app_pagination_bar.dart';
@@ -57,6 +63,44 @@ import '../widgets/organisms/app_product_section.dart';
 import '../widgets/organisms/app_stacked_list.dart';
 import '../widgets/organisms/app_stats_section.dart';
 import '../widgets/organisms/app_team_section.dart';
+
+// Relative paths from project root used as targets for the local edit feature.
+const _pColors = 'lib/core/app_colors.dart';
+const _pTypography = 'lib/core/app_typography.dart';
+const _pAnimations = 'lib/core/app_animations.dart';
+const _pButton = 'lib/widgets/atoms/app_button.dart';
+const _pIconButton = 'lib/widgets/atoms/app_icon_button.dart';
+const _pCheckbox = 'lib/widgets/atoms/app_checkbox.dart';
+const _pToggle = 'lib/widgets/atoms/app_toggle.dart';
+const _pIconBox = 'lib/widgets/atoms/app_icon_box.dart';
+const _pBadge = 'lib/widgets/atoms/app_badge.dart';
+const _pPill = 'lib/widgets/atoms/app_pill.dart';
+const _pStatusIndicator = 'lib/widgets/atoms/app_status_indicator.dart';
+const _pAnnouncementBadge = 'lib/widgets/atoms/app_announcement_badge.dart';
+const _pAvatar = 'lib/widgets/atoms/app_avatar.dart';
+const _pAvatarGroup = 'lib/widgets/atoms/app_avatar_group.dart';
+const _pLogo = 'lib/widgets/atoms/app_logo.dart';
+const _pStatItem = 'lib/widgets/atoms/app_stat_item.dart';
+const _pBlogCard = 'lib/widgets/atoms/app_blog_card.dart';
+const _pTeamMemberCard = 'lib/widgets/atoms/app_team_member_card.dart';
+const _pPricingCard = 'lib/widgets/atoms/app_pricing_card.dart';
+const _pFeatureItem = 'lib/widgets/atoms/app_feature_item.dart';
+const _pImagePlaceholder = 'lib/widgets/atoms/app_image_placeholder.dart';
+const _pInactivePlaceholder = 'lib/widgets/atoms/app_inactive_placeholder.dart';
+const _pToolBox = 'lib/widgets/atoms/app_tool_box.dart';
+const _pDottedLine = 'lib/widgets/atoms/app_dotted_line.dart';
+const _pTextField = 'lib/widgets/atoms/app_text_field.dart';
+const _pFieldLabel = 'lib/widgets/atoms/app_field_label.dart';
+const _pFormField = 'lib/widgets/atoms/app_form_field.dart';
+const _pSelectTrigger = 'lib/widgets/atoms/app_select_trigger.dart';
+const _pSelectOption = 'lib/widgets/atoms/app_select_option.dart';
+const _pListItem = 'lib/widgets/atoms/app_list_item.dart';
+const _pDescriptionItem = 'lib/widgets/atoms/app_description_item.dart';
+const _pFileItem = 'lib/widgets/atoms/app_file_item.dart';
+const _pBentoBox = 'lib/widgets/atoms/app_bento_box.dart';
+const _pCodeBlock = 'lib/widgets/atoms/app_code_block.dart';
+const _pDiffView = 'lib/widgets/atoms/app_diff_view.dart';
+const _pDropdown = 'lib/widgets/molecules/app_dropdown.dart';
 
 class ShowcasePage extends StatefulWidget {
   const ShowcasePage({super.key});
@@ -255,7 +299,7 @@ class _ShowcasePageState extends State<ShowcasePage> with SingleTickerProviderSt
       _section(context, 'A.8', 'Form Controls', '레이블, 폼 필드, 선택 컨트롤', _buildFormControls(context), key: _k('A.8')),
       _section(context, 'A.9', 'Information Rows', '리스트, 설명, 파일 아이템', _buildInfoRows(context), key: _k('A.9')),
       _section(context, 'A.10', 'Pagination Units', '페이지 전환 최소 단위', _buildPagination(context), key: _k('A.10')),
-      _section(context, 'A.11', 'Content Blocks', '벤토 박스 및 콘텐트 컨테이너', _buildContentBlocks(context), key: _k('A.11')),
+      _section(context, 'A.11', 'Content Blocks', '벤토 박스 및 코드/디프 블록', _buildContentBlocks(context), key: _k('A.11')),
       _bottomPad(),
     ]);
   }
@@ -311,19 +355,38 @@ class _ShowcasePageState extends State<ShowcasePage> with SingleTickerProviderSt
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppShowcaseUnit(label: 'Primary', child: AppButton(text: 'Primary Action', onPressed: () {})),
-        AppShowcaseUnit(label: 'Secondary', child: AppButton(text: 'Secondary', variant: AppButtonVariant.secondary, onPressed: () {})),
-        AppShowcaseUnit(label: 'With Icon', child: AppButton(text: 'With Icon', icon: Icons.bolt, onPressed: () {})),
-        AppShowcaseUnit(label: 'Text Link', child: AppButton(text: 'Text Link', variant: AppButtonVariant.text, onPressed: () {})),
-        AppShowcaseUnit(label: 'Icon Button', child: AppIconButton(icon: Icons.notifications_outlined, onPressed: () {})),
+        AppShowcaseUnit(unitId: 'A.1.primary', targetFiles: const [_pButton], label: 'Primary', child: AppButton(text: 'Primary Action', onPressed: () {})),
+        AppShowcaseUnit(unitId: 'A.1.secondary', targetFiles: const [_pButton], label: 'Secondary', child: AppButton(text: 'Secondary', variant: AppButtonVariant.secondary, onPressed: () {})),
+        AppShowcaseUnit(unitId: 'A.1.with_icon', targetFiles: const [_pButton], label: 'With Icon', child: AppButton(text: 'With Icon', icon: Icons.bolt, onPressed: () {})),
+        AppShowcaseUnit(unitId: 'A.1.text_link', targetFiles: const [_pButton], label: 'Text Link', child: AppButton(text: 'Text Link', variant: AppButtonVariant.text, onPressed: () {})),
+        AppShowcaseUnit(unitId: 'A.1.icon_button', targetFiles: const [_pIconButton], label: 'Icon Button', child: AppIconButton(icon: Icons.notifications_outlined, onPressed: () {})),
       ],
     );
   }
 
   Widget _buildSelectionControls(BuildContext context) {
-    return AppShowcaseUnit(
-      label: 'Checkbox',
-      child: AppCheckbox(initialValue: true, onChanged: (v) {}, title: 'Interactive Switch', description: 'Neutral gray toggle state.'),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        AppShowcaseUnit(
+          unitId: 'A.2.checkbox',
+          targetFiles: const [_pCheckbox],
+          label: 'Checkbox',
+          child: AppCheckbox(initialValue: true, onChanged: (v) {}, title: 'Interactive Switch', description: 'Neutral gray toggle state.'),
+        ),
+        AppShowcaseUnit(
+          unitId: 'A.2.toggle_on',
+          targetFiles: const [_pToggle],
+          label: 'Toggle (On)',
+          child: AppToggle(value: true, onChanged: (v) {}),
+        ),
+        AppShowcaseUnit(
+          unitId: 'A.2.toggle_off',
+          targetFiles: const [_pToggle],
+          label: 'Toggle (Off)',
+          child: AppToggle(value: false, onChanged: (v) {}),
+        ),
+      ],
     );
   }
 
@@ -331,14 +394,31 @@ class _ShowcasePageState extends State<ShowcasePage> with SingleTickerProviderSt
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppShowcaseUnit(label: 'Icon Box', child: AppIconBox(icon: Icons.bolt)),
-        AppShowcaseUnit(label: 'Icon Box (Custom)', child: AppIconBox(icon: Icons.shield, color: AppColors.gray800, iconColor: Colors.white)),
-        AppShowcaseUnit(label: 'Notification Badge', child: AppBadge(variant: AppBadgeVariant.notification, size: 12)),
-        AppShowcaseUnit(label: 'Dot Badge', child: AppBadge(variant: AppBadgeVariant.dot, size: 10)),
-        AppShowcaseUnit(label: 'Pill', child: AppPill(text: 'NEW')),
-        AppShowcaseUnit(label: 'Status — Online', child: AppStatusIndicator(isOnline: true)),
-        AppShowcaseUnit(label: 'Status — Offline', child: AppStatusIndicator(isOnline: false, lastSeen: '3h ago')),
-        AppShowcaseUnit(label: 'Announcement Badge', child: AppAnnouncementBadge(text: 'We just launched v2.0', actionText: 'See details →')),
+        AppShowcaseUnit(unitId: 'A.3.icon_box', targetFiles: [_pIconBox], label: 'Icon Box', child: AppIconBox(icon: Icons.bolt)),
+        AppShowcaseUnit(unitId: 'A.3.icon_box_custom', targetFiles: [_pIconBox], label: 'Icon Box (Custom)', child: AppIconBox(icon: Icons.shield, color: AppColors.gray800, iconColor: Colors.white)),
+        AppShowcaseUnit(unitId: 'A.3.notification_badge', targetFiles: [_pBadge], label: 'Notification Badge', child: AppBadge(variant: AppBadgeVariant.notification, size: 12)),
+        AppShowcaseUnit(unitId: 'A.3.dot_badge', targetFiles: [_pBadge], label: 'Dot Badge', child: AppBadge(variant: AppBadgeVariant.dot, size: 10)),
+        AppShowcaseUnit(unitId: 'A.3.pill', targetFiles: [_pPill], label: 'Pill', child: AppPill(text: 'NEW')),
+        AppShowcaseUnit(unitId: 'A.3.status_online', targetFiles: [_pStatusIndicator], label: 'Status — Online', child: AppStatusIndicator(isOnline: true)),
+        AppShowcaseUnit(unitId: 'A.3.status_offline', targetFiles: [_pStatusIndicator], label: 'Status — Offline', child: AppStatusIndicator(isOnline: false, lastSeen: '3h ago')),
+        AppShowcaseUnit(unitId: 'A.3.announcement_badge', targetFiles: [_pAnnouncementBadge], label: 'Announcement Badge', child: AppAnnouncementBadge(text: 'We just launched v2.0', actionText: 'See details →')),
+        AppShowcaseUnit(
+          unitId: 'A.3.tool_box',
+          targetFiles: [_pToolBox],
+          label: 'Tool Box',
+          child: AppToolBox(
+            children: [
+              AppToggle(value: true),
+              AppIconButton(icon: Icons.auto_fix_high, size: 14),
+            ],
+          ),
+        ),
+        AppShowcaseUnit(
+          unitId: 'A.3.dotted_line',
+          targetFiles: [_pDottedLine],
+          label: 'Dotted Line',
+          child: SizedBox(width: 240, child: AppDottedLine()),
+        ),
       ],
     );
   }
@@ -347,14 +427,16 @@ class _ShowcasePageState extends State<ShowcasePage> with SingleTickerProviderSt
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppShowcaseUnit(label: 'Avatar', child: AppAvatar(size: 56, isOnline: true)),
+        AppShowcaseUnit(unitId: 'A.4.avatar', targetFiles: [_pAvatar], label: 'Avatar', child: AppAvatar(size: 56, isOnline: true)),
         AppShowcaseUnit(
+          unitId: 'A.4.avatar_group',
+          targetFiles: [_pAvatarGroup],
           label: 'Avatar Group',
           child: AppAvatarGroup(imageUrls: [], size: 32),
         ),
-        AppShowcaseUnit(label: 'Logo', child: AppLogo(size: 40)),
-        AppShowcaseUnit(label: 'Logo (Icon only)', child: AppLogo(size: 40, showText: false)),
-        AppShowcaseUnit(label: 'Stat Item', child: AppStatItem(label: 'Global Transactions', value: '44 Million')),
+        AppShowcaseUnit(unitId: 'A.4.logo', targetFiles: [_pLogo], label: 'Logo', child: AppLogo(size: 40)),
+        AppShowcaseUnit(unitId: 'A.4.logo_icon_only', targetFiles: [_pLogo], label: 'Logo (Icon only)', child: AppLogo(size: 40, showText: false)),
+        AppShowcaseUnit(unitId: 'A.4.stat_item', targetFiles: [_pStatItem], label: 'Stat Item', child: AppStatItem(label: 'Global Transactions', value: '44 Million')),
       ],
     );
   }
@@ -364,17 +446,19 @@ class _ShowcasePageState extends State<ShowcasePage> with SingleTickerProviderSt
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const AppShowcaseUnit(
+          unitId: 'A.5.blog_card',
+          targetFiles: [_pBlogCard],
           label: 'Blog Card',
           child: AppBlogCard(date: 'Mar 16, 2026', category: 'Marketing', title: 'Boost your conversion rate', description: 'Illo sint voluptas. Error voluptates laudantium.', authorName: 'Michael Foster', authorRole: 'Co-Founder / CTO'),
         ),
-        const AppShowcaseUnit(label: 'Team Member Card', child: AppTeamMemberCard(name: 'Leslie Alexander', role: 'Co-Founder / CEO')),
+        const AppShowcaseUnit(unitId: 'A.5.team_member_card', targetFiles: [_pTeamMemberCard], label: 'Team Member Card', child: AppTeamMemberCard(name: 'Leslie Alexander', role: 'Co-Founder / CEO')),
         ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 400),
-          child: AppShowcaseUnit(label: 'Pricing Card', child: AppPricingCard(tier: 'Hobby', price: '\$29', period: '/month', description: 'The essentials to provide your best work.', features: const ['5 products', 'Up to 1,000 subscribers', 'Basic analytics'], buttonText: 'Get started', onPressed: () {})),
+          child: AppShowcaseUnit(unitId: 'A.5.pricing_card', targetFiles: const [_pPricingCard], label: 'Pricing Card', child: AppPricingCard(tier: 'Hobby', price: '\$29', period: '/month', description: 'The essentials to provide your best work.', features: const ['5 products', 'Up to 1,000 subscribers', 'Basic analytics'], buttonText: 'Get started', onPressed: () {})),
         ),
         ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 400),
-          child: AppShowcaseUnit(label: 'Pricing Card (Emphasized)', child: AppPricingCard(tier: 'Enterprise', price: '\$99', period: '/month', description: 'Dedicated support and infrastructure.', features: const ['Unlimited products', 'Unlimited subscribers', 'Advanced analytics'], buttonText: 'Contact sales', isEmphasized: true, onPressed: () {})),
+          child: AppShowcaseUnit(unitId: 'A.5.pricing_card_emphasized', targetFiles: const [_pPricingCard], label: 'Pricing Card (Emphasized)', child: AppPricingCard(tier: 'Enterprise', price: '\$99', period: '/month', description: 'Dedicated support and infrastructure.', features: const ['Unlimited products', 'Unlimited subscribers', 'Advanced analytics'], buttonText: 'Contact sales', isEmphasized: true, onPressed: () {})),
         ),
       ],
     );
@@ -384,11 +468,12 @@ class _ShowcasePageState extends State<ShowcasePage> with SingleTickerProviderSt
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppShowcaseUnit(label: 'Feature — Standard', child: AppFeatureItem(icon: Icons.cloud_upload_outlined, title: 'Push to deploy', description: 'Lorem ipsum dolor sit amet consectetur.')),
-        AppShowcaseUnit(label: 'Feature — Inline', child: AppFeatureItem(icon: Icons.lock_outline, title: 'SSL certificates.', description: 'Anim aute id magna aliqua ad ad non deserunt.', variant: AppFeatureItemVariant.inline)),
-        AppShowcaseUnit(label: 'Feature — Vertical', child: AppFeatureItem(icon: Icons.bolt, title: 'Fast performance', description: 'Lightning fast build times.', variant: AppFeatureItemVariant.vertical)),
-        AppShowcaseUnit(label: 'Image Placeholder', child: AppImagePlaceholder(icon: Icons.photo_outlined)),
-        AppShowcaseUnit(label: 'Image Placeholder (Shadow)', child: AppImagePlaceholder(icon: Icons.dashboard_outlined, hasShadow: true)),
+        AppShowcaseUnit(unitId: 'A.6.feature_standard', targetFiles: [_pFeatureItem], label: 'Feature — Standard', child: AppFeatureItem(icon: Icons.cloud_upload_outlined, title: 'Push to deploy', description: 'Lorem ipsum dolor sit amet consectetur.')),
+        AppShowcaseUnit(unitId: 'A.6.feature_inline', targetFiles: [_pFeatureItem], label: 'Feature — Inline', child: AppFeatureItem(icon: Icons.lock_outline, title: 'SSL certificates.', description: 'Anim aute id magna aliqua ad ad non deserunt.', variant: AppFeatureItemVariant.inline)),
+        AppShowcaseUnit(unitId: 'A.6.feature_vertical', targetFiles: [_pFeatureItem], label: 'Feature — Vertical', child: AppFeatureItem(icon: Icons.bolt, title: 'Fast performance', description: 'Lightning fast build times.', variant: AppFeatureItemVariant.vertical)),
+        AppShowcaseUnit(unitId: 'A.6.image_placeholder', targetFiles: [_pImagePlaceholder], label: 'Image Placeholder', child: AppImagePlaceholder(icon: Icons.photo_outlined)),
+        AppShowcaseUnit(unitId: 'A.6.image_placeholder_shadow', targetFiles: [_pImagePlaceholder], label: 'Image Placeholder (Shadow)', child: AppImagePlaceholder(icon: Icons.dashboard_outlined, hasShadow: true)),
+        AppShowcaseUnit(unitId: 'A.6.inactive_placeholder', targetFiles: [_pInactivePlaceholder], label: 'Inactive Placeholder', child: AppInactivePlaceholder()),
       ],
     );
   }
@@ -397,9 +482,9 @@ class _ShowcasePageState extends State<ShowcasePage> with SingleTickerProviderSt
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppShowcaseUnit(label: 'Standard', child: AppTextField(hint: 'Standard Input Field')),
-        AppShowcaseUnit(label: 'With Prefix', child: AppTextField(prefix: 'workcation.com/', hint: 'janesmith')),
-        AppShowcaseUnit(label: 'TextArea', child: AppTextField(hint: 'TextArea', maxLines: 3)),
+        AppShowcaseUnit(unitId: 'A.7.standard', targetFiles: [_pTextField], label: 'Standard', child: AppTextField(hint: 'Standard Input Field')),
+        AppShowcaseUnit(unitId: 'A.7.with_prefix', targetFiles: [_pTextField], label: 'With Prefix', child: AppTextField(prefix: 'workcation.com/', hint: 'janesmith')),
+        AppShowcaseUnit(unitId: 'A.7.textarea', targetFiles: [_pTextField], label: 'TextArea', child: AppTextField(hint: 'TextArea', maxLines: 3)),
       ],
     );
   }
@@ -408,13 +493,13 @@ class _ShowcasePageState extends State<ShowcasePage> with SingleTickerProviderSt
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const AppShowcaseUnit(label: 'Field Label', child: AppFieldLabel(label: 'Email Address')),
-        const AppShowcaseUnit(label: 'Form Field', child: AppFormField(label: 'Full Name', hint: 'John Doe')),
-        const AppShowcaseUnit(label: 'Form Field (Password)', child: AppFormField(label: 'Password', hint: '********', isPassword: true)),
-        AppShowcaseUnit(label: 'Select Trigger', child: AppSelectTrigger(text: 'Tom Cook', isOpen: false, onTap: () {})),
-        AppShowcaseUnit(label: 'Dropdown Trigger', child: AppSelectTrigger(text: 'Options', isOpen: false, onTap: () {}, variant: AppSelectTriggerVariant.dropdown, expand: false)),
-        const AppShowcaseUnit(label: 'Select Option (Selected)', child: AppSelectOption(name: 'Tom Cook', isSelected: true)),
-        const AppShowcaseUnit(label: 'Select Option', child: AppSelectOption(name: 'Leslie Alexander')),
+        const AppShowcaseUnit(unitId: 'A.8.field_label', targetFiles: [_pFieldLabel], label: 'Field Label', child: AppFieldLabel(label: 'Email Address')),
+        const AppShowcaseUnit(unitId: 'A.8.form_field', targetFiles: [_pFormField], label: 'Form Field', child: AppFormField(label: 'Full Name', hint: 'John Doe')),
+        const AppShowcaseUnit(unitId: 'A.8.form_field_password', targetFiles: [_pFormField], label: 'Form Field (Password)', child: AppFormField(label: 'Password', hint: '********', isPassword: true)),
+        AppShowcaseUnit(unitId: 'A.8.select_trigger', targetFiles: const [_pSelectTrigger], label: 'Select Trigger', child: AppSelectTrigger(text: 'Tom Cook', isOpen: false, onTap: () {})),
+        AppShowcaseUnit(unitId: 'A.8.dropdown_trigger', targetFiles: const [_pSelectTrigger], label: 'Dropdown Trigger', child: AppSelectTrigger(text: 'Options', isOpen: false, onTap: () {}, variant: AppSelectTriggerVariant.dropdown, expand: false)),
+        const AppShowcaseUnit(unitId: 'A.8.select_option_selected', targetFiles: [_pSelectOption], label: 'Select Option (Selected)', child: AppSelectOption(name: 'Tom Cook', isSelected: true)),
+        const AppShowcaseUnit(unitId: 'A.8.select_option', targetFiles: [_pSelectOption], label: 'Select Option', child: AppSelectOption(name: 'Leslie Alexander')),
       ],
     );
   }
@@ -423,9 +508,9 @@ class _ShowcasePageState extends State<ShowcasePage> with SingleTickerProviderSt
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        AppShowcaseUnit(label: 'List Item', child: AppSurface(child: AppListItem(onTap: () {}, leading: const AppAvatar(size: 40), title: 'Dries Vincent', subtitle: 'dries.vincent@example.com', trailing: const Icon(Icons.chevron_right, color: AppColors.gray400, size: 20)))),
-        const AppShowcaseUnit(label: 'Description Item', child: AppSurface(padding: EdgeInsets.symmetric(horizontal: 16), child: AppDescriptionItem(label: 'Role', content: Text('Director of Product', style: TextStyle(color: AppColors.gray500, fontSize: 14))))),
-        AppShowcaseUnit(label: 'File Item', child: AppSurface(child: AppFileItem(fileName: 'resume_v2.pdf', fileSize: '4.2mb', onDownload: () {}))),
+        AppShowcaseUnit(unitId: 'A.9.list_item', targetFiles: const [_pListItem], label: 'List Item', child: AppSurface(child: AppListItem(onTap: () {}, leading: const AppAvatar(size: 40), title: 'Dries Vincent', subtitle: 'dries.vincent@example.com', trailing: const Icon(Icons.chevron_right, color: AppColors.gray400, size: 20)))),
+        const AppShowcaseUnit(unitId: 'A.9.description_item', targetFiles: [_pDescriptionItem], label: 'Description Item', child: AppSurface(padding: EdgeInsets.symmetric(horizontal: 16), child: AppDescriptionItem(label: 'Role', content: Text('Director of Product', style: TextStyle(color: AppColors.gray500, fontSize: 14))))),
+        AppShowcaseUnit(unitId: 'A.9.file_item', targetFiles: const [_pFileItem], label: 'File Item', child: AppSurface(child: AppFileItem(fileName: 'resume_v2.pdf', fileSize: '4.2mb', onDownload: () {}))),
       ],
     );
   }
@@ -441,7 +526,34 @@ class _ShowcasePageState extends State<ShowcasePage> with SingleTickerProviderSt
   }
 
   Widget _buildContentBlocks(BuildContext context) {
-    return const AppShowcaseUnit(label: 'Bento Box', child: AppBentoBox(title: 'Analytics', description: 'Track your metrics in real-time.', height: 260, icon: Icons.analytics));
+    return const Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        AppShowcaseUnit(
+          unitId: 'A.11.bento_box',
+          targetFiles: [_pBentoBox],
+          label: 'Bento Box',
+          child: AppBentoBox(title: 'Analytics', description: 'Track your metrics in real-time.', height: 260, icon: Icons.analytics),
+        ),
+        AppShowcaseUnit(
+          unitId: 'A.11.code_block',
+          targetFiles: [_pCodeBlock],
+          label: 'Code Block',
+          child: AppCodeBlock(
+            language: 'dart',
+            text: "final color = AppColors.pointOrange;\nprint('\$color');",
+          ),
+        ),
+        AppShowcaseUnit(
+          unitId: 'A.11.diff_view',
+          targetFiles: [_pDiffView],
+          label: 'Diff View',
+          child: AppDiffView(
+            diff: '--- a/lib/widgets/atoms/app_button.dart\n+++ b/lib/widgets/atoms/app_button.dart\n@@\n-      backgroundColor = AppColors.pointOrange;\n+      backgroundColor = AppColors.pointGold;',
+          ),
+        ),
+      ],
+    );
   }
 
   // ============================================================
@@ -452,9 +564,9 @@ class _ShowcasePageState extends State<ShowcasePage> with SingleTickerProviderSt
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppShowcaseUnit(label: 'Left Align', child: AppDropdown(alignment: DropdownAlignment.left, title: 'Left')),
-        AppShowcaseUnit(label: 'Center Align', child: AppDropdown(alignment: DropdownAlignment.center, title: 'Center')),
-        AppShowcaseUnit(label: 'Right Align', child: AppDropdown(alignment: DropdownAlignment.right, title: 'Right')),
+        AppShowcaseUnit(unitId: 'M.1.left_align', targetFiles: [_pDropdown], label: 'Left Align', child: AppDropdown(alignment: DropdownAlignment.left, title: 'Left')),
+        AppShowcaseUnit(unitId: 'M.1.center_align', targetFiles: [_pDropdown], label: 'Center Align', child: AppDropdown(alignment: DropdownAlignment.center, title: 'Center')),
+        AppShowcaseUnit(unitId: 'M.1.right_align', targetFiles: [_pDropdown], label: 'Right Align', child: AppDropdown(alignment: DropdownAlignment.right, title: 'Right')),
       ],
     );
   }
@@ -465,39 +577,45 @@ class _ShowcasePageState extends State<ShowcasePage> with SingleTickerProviderSt
 
   Widget _buildThemeColors(BuildContext context) {
     final grayscale = [
-      ('Gray 950', '#0A0A0A', AppColors.gray950), ('Gray 900', '#171717', AppColors.gray900),
-      ('Gray 800', '#262626', AppColors.gray800), ('Gray 700', '#404040', AppColors.gray700),
-      ('Gray 600', '#525252', AppColors.gray600), ('Gray 500', '#737373', AppColors.gray500),
-      ('Gray 400', '#A3A3A3', AppColors.gray400), ('Gray 300', '#D4D4D4', AppColors.gray300),
-      ('Gray 200', '#E5E5E5', AppColors.gray200), ('Gray 100', '#F5F5F5', AppColors.gray100),
-      ('Gray 50', '#FAFAFA', AppColors.gray50),
+      ('gray_950', 'Gray 950', '#0A0A0A', AppColors.gray950), ('gray_900', 'Gray 900', '#171717', AppColors.gray900),
+      ('gray_800', 'Gray 800', '#262626', AppColors.gray800), ('gray_700', 'Gray 700', '#404040', AppColors.gray700),
+      ('gray_600', 'Gray 600', '#525252', AppColors.gray600), ('gray_500', 'Gray 500', '#737373', AppColors.gray500),
+      ('gray_400', 'Gray 400', '#A3A3A3', AppColors.gray400), ('gray_300', 'Gray 300', '#D4D4D4', AppColors.gray300),
+      ('gray_200', 'Gray 200', '#E5E5E5', AppColors.gray200), ('gray_100', 'Gray 100', '#F5F5F5', AppColors.gray100),
+      ('gray_50', 'Gray 50', '#FAFAFA', AppColors.gray50),
     ];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppShowcaseUnit(label: 'Orange', value: '#F94001', child: Container(width: 40, height: 40, decoration: const BoxDecoration(color: AppColors.pointOrange, borderRadius: BorderRadius.all(Radius.circular(8))))),
-        AppShowcaseUnit(label: 'Gold', value: '#ED9D0B', child: Container(width: 40, height: 40, decoration: const BoxDecoration(color: AppColors.pointGold, borderRadius: BorderRadius.all(Radius.circular(8))))),
+        AppShowcaseUnit(unitId: 'F.1.orange', targetFiles: const [_pColors], label: 'Orange', value: '#F94001', child: Container(width: 40, height: 40, decoration: const BoxDecoration(color: AppColors.pointOrange, borderRadius: BorderRadius.all(Radius.circular(8))))),
+        AppShowcaseUnit(unitId: 'F.1.gold', targetFiles: const [_pColors], label: 'Gold', value: '#ED9D0B', child: Container(width: 40, height: 40, decoration: const BoxDecoration(color: AppColors.pointGold, borderRadius: BorderRadius.all(Radius.circular(8))))),
         const SizedBox(height: 32),
-        ...grayscale.map((c) => AppShowcaseUnit(label: c.$1, value: c.$2, bottomPadding: 16, child: Container(width: 40, height: 40, decoration: BoxDecoration(color: c.$3, borderRadius: BorderRadius.circular(8), border: Border.all(color: Theme.of(context).colorScheme.outline, width: 1))))),
+        ...grayscale.map((c) => AppShowcaseUnit(unitId: 'F.1.${c.$1}', targetFiles: const [_pColors], label: c.$2, value: c.$3, bottomPadding: 16, child: Container(width: 40, height: 40, decoration: BoxDecoration(color: c.$4, borderRadius: BorderRadius.circular(8), border: Border.all(color: Theme.of(context).colorScheme.outline, width: 1))))),
       ],
     );
   }
 
   Widget _buildTypography(BuildContext context) {
-    Widget row(String cat, List<(String, TextStyle)> items) => Column(
+    Widget row(String cat, String catId, List<(String, String, TextStyle)> items) => Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: items.map((i) => AppShowcaseUnit(label: '$cat ${i.$1}', value: '${i.$2.fontSize?.toInt()}px', child: Text('디자인은 어떻게 작동하는지입니다.', style: i.$2))).toList(),
+      children: items.map((i) => AppShowcaseUnit(
+        unitId: 'F.2.${catId}_${i.$1.toLowerCase()}',
+        targetFiles: const [_pTypography],
+        label: '$cat ${i.$2}',
+        value: '${i.$3.fontSize?.toInt()}px',
+        child: Text('디자인은 어떻게 작동하는지입니다.', style: i.$3),
+      )).toList(),
     );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        row('Display', [('Large', AppTypography.displayLarge), ('Medium', AppTypography.displayMedium)]),
+        row('Display', 'display', [('large', 'Large', AppTypography.displayLarge), ('medium', 'Medium', AppTypography.displayMedium)]),
         const SizedBox(height: 32),
-        row('Headline', [('Large', AppTypography.headlineLarge), ('Medium', AppTypography.headlineMedium)]),
+        row('Headline', 'headline', [('large', 'Large', AppTypography.headlineLarge), ('medium', 'Medium', AppTypography.headlineMedium)]),
         const SizedBox(height: 32),
-        row('Title', [('Large', AppTypography.titleLarge), ('Medium', AppTypography.titleMedium)]),
+        row('Title', 'title', [('large', 'Large', AppTypography.titleLarge), ('medium', 'Medium', AppTypography.titleMedium)]),
         const SizedBox(height: 32),
-        row('Body', [('Large', AppTypography.bodyLarge), ('Medium', AppTypography.bodyMedium)]),
+        row('Body', 'body', [('large', 'Large', AppTypography.bodyLarge), ('medium', 'Medium', AppTypography.bodyMedium)]),
       ],
     );
   }
@@ -519,7 +637,7 @@ class _ShowcasePageState extends State<ShowcasePage> with SingleTickerProviderSt
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const AppShowcaseUnit(label: 'Durations', child: SizedBox.shrink()),
+        const AppShowcaseUnit(unitId: 'F.3.durations', targetFiles: [_pAnimations], label: 'Durations', child: SizedBox.shrink()),
         Row(children: [
           token('${AppAnimations.fast.inMilliseconds}ms', 'fast'),
           const SizedBox(width: 40),
@@ -528,17 +646,17 @@ class _ShowcasePageState extends State<ShowcasePage> with SingleTickerProviderSt
           token('${AppAnimations.slow.inMilliseconds}ms', 'slow'),
         ]),
         const SizedBox(height: 32),
-        const AppShowcaseUnit(label: 'Curves', child: SizedBox.shrink()),
+        const AppShowcaseUnit(unitId: 'F.3.curves', targetFiles: [_pAnimations], label: 'Curves', child: SizedBox.shrink()),
         Row(children: [
           token('easeOut', 'defaultCurve'),
           const SizedBox(width: 40),
           token('easeInOut', 'intenseCurve'),
         ]),
         const SizedBox(height: 32),
-        const AppShowcaseUnit(label: 'Slide', child: SizedBox.shrink()),
+        const AppShowcaseUnit(unitId: 'F.3.slide', targetFiles: [_pAnimations], label: 'Slide', child: SizedBox.shrink()),
         token('Offset(1, 0)', 'slideInFromRight'),
         const SizedBox(height: 32),
-        const AppShowcaseUnit(label: 'Scale Tweens', child: SizedBox.shrink()),
+        const AppShowcaseUnit(unitId: 'F.3.scale_tweens', targetFiles: [_pAnimations], label: 'Scale Tweens', child: SizedBox.shrink()),
         Row(children: [
           token('${AppAnimations.dropdownScaleBegin}', 'dropdownScale'),
           const SizedBox(width: 40),
@@ -547,8 +665,7 @@ class _ShowcasePageState extends State<ShowcasePage> with SingleTickerProviderSt
           token('${AppAnimations.checkboxScaleBegin}', 'checkboxScale'),
         ]),
         const SizedBox(height: 32),
-        const AppShowcaseUnit(label: 'Interaction', child: SizedBox.shrink()),
-        AppButton(text: 'Click to test ripple', variant: AppButtonVariant.secondary, onPressed: () {}),
+        AppShowcaseUnit(unitId: 'F.3.interaction', targetFiles: const [_pAnimations], label: 'Interaction', child: AppButton(text: 'Click to test ripple', variant: AppButtonVariant.secondary, onPressed: () {})),
       ],
     );
   }

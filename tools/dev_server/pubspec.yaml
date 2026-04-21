@@ -1,0 +1,12 @@
+name: flutter_design_system_dev_server
+description: Local-only dev server that proxies Claude CLI for the showcase edit feature.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  shelf: ^1.4.1
+  shelf_router: ^1.1.4
+  path: ^1.9.0
